@@ -8,8 +8,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\ltAppAsset;
 
 AppAsset::register($this);
+ltAppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,13 +24,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <!--[if lt IE 9]>
-    <script src="libs/html5shiv/es5-shim.min.js"></script>
-    <script src="libs/html5shiv/html5shiv.min.js"></script>
-    <script src="libs/html5shiv/html5shiv-printshiv.min.js"></script>
-    <script src="libs/respond/respond.min.js"></script>
-    <![endif]-->
-    <script src="libs/modernizr/modernizr.js"></script>
+    
 </head>
 <body>
 <?php $this->beginBody() ?>

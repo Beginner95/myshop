@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
         'js/jquery.cycle.all.js',
         'js/jquery.magnific-popup.min.js',
         'js/jquery.prettyPhoto.js',
+        'web/libs/modernizr/modernizr.js',
         'js/common.js',
     ];
     public $depends = [
