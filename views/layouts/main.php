@@ -59,7 +59,6 @@ ltAppAsset::register($this);
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-default">
@@ -77,22 +76,9 @@ ltAppAsset::register($this);
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Магазин <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">PC</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Мобильные телефоны <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">iPhone</a></li>
-                                    <li><a href="#">Samsung</a></li>
-                                    <li><a href="#">Sony</a></li>
-                                    <li><a href="#">Lume</a></li>
-                                    <li><a href="#">Прочие</a></li>
-                                </ul>
-                            <li><a href="#">Аксессуары</a></li>
-                            <li><a href="#">Рации</a></li>
+                            <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']) ?>
                             <li><a href="#">Условия работы</a></li>
                             <li><a href="#">Контакты</a></li>
-                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -110,6 +96,7 @@ ltAppAsset::register($this);
             </nav>
         </div>
     </div>
+    
 
     <?php echo $content; ?>
     
