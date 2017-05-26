@@ -111,46 +111,8 @@ ltAppAsset::register($this);
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="span9 slider">
-                <div class="slider-slides">
-                    <div class="slides">
-                        <a href="#"><img src="img/iPhone7.jpg" alt=""></a>
-                        <div class="overlay">
-                            <h1>iPhone 7</h1>
-                            <p><span>50%</span> OFF <br/> TRENDY <span>DESIGNS</span> </p>
-
-                        </div>
-                    </div>
-                    <div class="slides">
-                        <a href="#"><img src="img/iPhone6.jpg" alt=""></a>
-                        <div class="overlay">
-                            <h1>iPhone 6</h1>
-                            <p><span>30%</span> OFF <br/> TRENDY <span>DESIGNS</span> </p>
-                        </div>
-                    </div>
-                    <div class="slides">
-                        <a href="#"><img src="img/iPhone5.jpg" alt=""></a>
-                        <div class="overlay">
-                            <h1>iPhone</h1>
-                            <p><span>50%</span> OFF <br/> TRENDY <span>DESIGNS</span> </p>
-                        </div>
-                    </div>
-                    <div class="slides">
-                        <a href="#"><img src="img/Samsung8.jpg" alt=""></a>
-                        <div class="overlay">
-                            <h1>SAMSUNG 8</h1>
-                            <p><span>30%</span> OFF <br/> TRENDY <span>DESIGNS</span> </p>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="next"></a>
-                <a href="#" class="prev"></a>
-                <div class="slider-btn"></div>
-            </div>
-        </div>
-    </div>
+    <?php echo $content; ?>
+    
 </header>
 
 <div class="container">
@@ -164,7 +126,7 @@ ltAppAsset::register($this);
             <div>
                 <figure>
                     <span class="new">Новинка</span>
-                    <a href="#"><img src="img/1.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/1.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -185,7 +147,7 @@ ltAppAsset::register($this);
             <div>
                 <figure>
                     <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="img/2.jpeg" alt=""></a>
+                    <a href="#"><img src="/web/img/2.jpeg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -207,7 +169,7 @@ ltAppAsset::register($this);
                 <figure>
                     <span class="new">Новинка</span>
                     <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="img/3.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/3.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -229,7 +191,7 @@ ltAppAsset::register($this);
             <div>
                 <figure>
                     <span class="new">Новинка</span>
-                    <a href="#"><img src="img/1.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/1.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -250,7 +212,7 @@ ltAppAsset::register($this);
             <div>
                 <figure>
                     <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="img/2.jpeg" alt=""></a>
+                    <a href="#"><img src="/web/img/2.jpeg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -271,7 +233,7 @@ ltAppAsset::register($this);
         <div class="span3 product">
             <div>
                 <figure>
-                    <a href="#"><img src="img/3.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/3.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -292,7 +254,7 @@ ltAppAsset::register($this);
         <div class="span3 product">
             <div>
                 <figure>
-                    <a href="#"><img src="img/1.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/1.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
@@ -312,7 +274,7 @@ ltAppAsset::register($this);
         <div class="span3 product">
             <div>
                 <figure>
-                    <a href="#"><img src="img/5.jpg" alt=""></a>
+                    <a href="#"><img src="/web/img/5.jpg" alt=""></a>
                     <div class="overlay">
                         <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
                         <a href="#" class="link"></a>
