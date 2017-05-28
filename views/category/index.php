@@ -68,8 +68,8 @@
                             <p>Розн. <span><?php echo number_format($hit->wholesale_price, 2, ',', ' '); ?></span></p>
                             <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>"><h4><?php echo $hit->name; ?></h4></a>
                             <div class="icon">
-                                <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                                <a href="#" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="<?php echo \yii\helpers\Url::to(['cart/add', 'id' => $hit->id]); ?>" data-id="<?php echo $hit->id; ?>" class="label label-danger add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                                <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
                             </div>
                         </div>
                     </div>
