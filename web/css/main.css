@@ -166,6 +166,7 @@ body {
     width: 270px;
     height: 270px;
     border: 1px solid #dfdfdf;
+    overflow: hidden;
 }
 
 .product figure img {
@@ -190,7 +191,7 @@ body {
 }
 
 .detail span {
-    font: 700 16px 'Arial' sans-serif;
+    /*font: 700 16px 'Arial', sans-serif;*/
     color: #f71919;
     margin-bottom: 5px;
 }
@@ -232,7 +233,7 @@ body {
 }
 
 .sale {
-    margin-left: 163px;
+    margin-left: 177px;
     background: rgba(73,155,234,1);
     background: -moz-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 75%, rgba(32,124,229,1) 100%);
     background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(75%, rgba(32,124,229,1)), color-stop(100%, rgba(32,124,229,1)));
