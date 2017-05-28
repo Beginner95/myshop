@@ -16,7 +16,7 @@ class CategoryController extends AppController
     }
 
     public function actionView($id) {
-        $id = Yii::$app->request->get('id');
+        //$id = Yii::$app->request->get('id');
         $category = Category::findOne($id);
 
         if (empty($category)) {
