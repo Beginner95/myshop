@@ -25,8 +25,8 @@ use yii\helpers\Html;
                             <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><?php echo Html::img("/web/img/products/" . $product->image, ['alt' => $product->name]); ?></a>
                         </figure>
                         <div class="detail">
-                            <p>Опт. <span><?php echo number_format($product->price, 2, ',', ' '); ?></span></p>
-                            <p>Розн. <span><?php echo number_format($product->wholesale_price, 2, ',', ' '); ?></span></p>
+                            <p>Розн. <span><?php echo number_format($product->price, 2, ',', ' '); ?></span></p>
+                            <p>Опт. <span><?php echo number_format($product->wholesale_price, 2, ',', ' '); ?></span></p>
                             <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><h4><?php echo $product->name; ?></h4></a>
                             <div class="icon">
                                 <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
