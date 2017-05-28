@@ -6,7 +6,7 @@ use yii\helpers\Html;
 <div class="container">
     <div class="row">
         <div class="container-fluid">
-            <h1 class="title">Популярные товары</h1>
+            <h1 class="title"><?php echo $category->name; ?></h1>
         </div>
     </div>
     <div class="row">
@@ -22,16 +22,12 @@ use yii\helpers\Html;
                                 <span class="sale">Расспродажа</span>
                             <?php endif; ?>
 
-                            <a href="#"><?php echo Html::img("/web/img/products/" . $product->image, ['alt' => $product->name]); ?></a>
-                            <div class="overlay">
-                                <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                                <a href="#" class="link"></a>
-                            </div>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><?php echo Html::img("/web/img/products/" . $product->image, ['alt' => $product->name]); ?></a>
                         </figure>
                         <div class="detail">
                             <p>Опт. <span><?php echo number_format($product->price, 2, ',', ' '); ?></span></p>
                             <p>Розн. <span><?php echo number_format($product->wholesale_price, 2, ',', ' '); ?></span></p>
-                            <h4><?php echo $product->name; ?></h4>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><h4><?php echo $product->name; ?></h4></a>
                             <div class="icon">
                                 <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                                 <a href="#" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
@@ -40,6 +36,8 @@ use yii\helpers\Html;
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div class="clearfix"></div>
+            <div class="container-fluid"><?php echo \yii\widgets\LinkPager::widget(['pagination' => $pages,]); ?></div>
         <?php else: ?>
 
             <h2>Товаров нет</h2>

@@ -45,8 +45,6 @@
 </header>
 
 <div class="container">
-
-
     <div class="row">
         <?php if (!empty($hits)) : ?>
             <div class="container-fluid">
@@ -63,17 +61,12 @@
                             <?php if ($hit->sale !== null) : ?>
                                 <span class="sale">Расспродажа</span>
                             <?php endif; ?>
-
-                            <a href="#"><?php echo Html::img("/web/img/products/" . $hit->image, ['alt' => $hit->name]); ?></a>
-                            <div class="overlay">
-                                <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                                <a href="#" class="link"></a>
-                            </div>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>"><?php echo Html::img("/web/img/products/" . $hit->image, ['alt' => $hit->name]); ?></a>
                         </figure>
                         <div class="detail">
                             <p>Опт. <span><?php echo number_format($hit->price, 2, ',', ' '); ?></span></p>
                             <p>Розн. <span><?php echo number_format($hit->wholesale_price, 2, ',', ' '); ?></span></p>
-                            <h4><?php echo $hit->name; ?></h4>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>"><h4><?php echo $hit->name; ?></h4></a>
                             <div class="icon">
                                 <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                                 <a href="#" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
@@ -83,156 +76,5 @@
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
-
-
-
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="/web/img/2.jpeg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Camera Samsung</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <span class="new">Новинка</span>
-                    <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="/web/img/3.jpg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Brown Wood Chair</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <span class="new">Новинка</span>
-                    <a href="#"><img src="/web/img/1.jpg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Камера для iPhone</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <span class="sale">Расспродажа</span>
-                    <a href="#"><img src="/web/img/2.jpeg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Camera Samsung</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <a href="#"><img src="/web/img/3.jpg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Brown Wood Chair</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <a href="#"><img src="/web/img/1.jpg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Камера для iPhone</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="span3 product">
-            <div>
-                <figure>
-                    <a href="#"><img src="/web/img/5.jpg" alt=""></a>
-                    <div class="overlay">
-                        <a href="http://placehold.it/270x186" class="zoom prettyPhoto"></a>
-                        <a href="#" class="link"></a>
-                    </div>
-                </figure>
-                <div class="detail">
-                    <p>Опт. <span>244.00</span></p>
-                    <p>Розн. <span>290.00</span></p>
-                    <h4>Camera Samsung</h4>
-                    <div class="icon">
-                        <a href="#" class="label label-danger"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <a href="/product-details.html" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
