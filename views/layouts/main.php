@@ -52,7 +52,7 @@ ltAppAsset::register($this);
                         <p class="phone-number">+7 (929) 888 02 05</p>
                     </div>
                     <div class="logo">
-                        <a class="navbar-brand" href="#">Logotip</a>
+                        <a class="navbar-brand" href="<?php echo \yii\helpers\Url::home(); ?>">Logotip</a>
                     </div>
                     <div class="clear"></div>
                 </nav>
