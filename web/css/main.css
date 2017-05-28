@@ -296,7 +296,37 @@ body {
     font-size: 15px;
 }
 
+.pagination {
+    border-radius: 0;
+}
 
+.pagination > li > a, .pagination > li > span {
+    padding: 4px 10px;
+    border-radius: 50%;
+    margin: 0 2px;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background: rgba(247,124,102,1);
+    background: -moz-linear-gradient(45deg, rgba(247,124,102,1) 0%, rgba(246,41,12,1) 72%, rgba(231,56,39,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(247,124,102,1)), color-stop(72%, rgba(246,41,12,1)), color-stop(100%, rgba(231,56,39,1)));
+    background: -webkit-linear-gradient(45deg, rgba(247,124,102,1) 0%, rgba(246,41,12,1) 72%, rgba(231,56,39,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(247,124,102,1) 0%, rgba(246,41,12,1) 72%, rgba(231,56,39,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(247,124,102,1) 0%, rgba(246,41,12,1) 72%, rgba(231,56,39,1) 100%);
+    background: linear-gradient(45deg, rgba(247,124,102,1) 0%, rgba(246,41,12,1) 72%, rgba(231,56,39,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f77c66', endColorstr='#e73827', GradientType=1 );
+    border-color: #f65d44;
+}
 
 .menu-bottom ul, .contacts{
     list-style: none;
