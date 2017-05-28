@@ -10,7 +10,7 @@ use yii\data\Pagination;
 class CategoryController extends AppController
 {
     public function actionIndex() {
-        $hits = Product::find()->where(['hit' => '1'])->limit(6)->all();
+        $hits = Product::find()->where(['hit' => '1'])->limit(8)->all();
         return $this->render('index', compact('hits'));
     }
 
