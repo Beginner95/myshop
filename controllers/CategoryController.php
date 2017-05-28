@@ -16,6 +16,8 @@ class CategoryController extends AppController
     public function actionView($id) {
         $id = Yii::$app->request->get('id');
         $products = Product::find()->where(['category_id' => $id])->all();
+        $category = Category::findOne($id);
+        $this->setMeta('Магазин ' . $category->name, $category->keywords, $category->description);
         return $this->render('view', compact('products'));
     }
 
