@@ -40,9 +40,9 @@ ltAppAsset::register($this);
                         </ul>
                     </div>
 
-                    <form class="block-serch">
+                    <form method="get" action="<?php echo \yii\helpers\Url::to(['search/search']); ?>" class="block-serch">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Поиск по товарам">
+                            <input type="text" name="q" class="form-control" placeholder="Поиск по товарам">
                             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                     </form>
