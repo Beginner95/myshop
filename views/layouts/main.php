@@ -34,10 +34,27 @@ ltAppAsset::register($this);
             <div class="container-fluid">
                 <nav class="top">
                     <div class="cart">
+                        <?php if (empty(Yii::$app->session['cart'])) : ?>
                         <ul>
-                            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span><span class="qty">10</span></a></li>
-                            <li>Ваша корзина <br> 0 товаров - 0</li>
+                            <li style="padding-left: 35px">
+                                <a href="#" onclick="return getCart()">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                            </li>
+                            <li style="margin-top: 8px;">Корзина пуста!</li>
                         </ul>
+
+                        <?php else: ?>
+                        <ul>
+                            <li>
+                                <a href="#" onclick="return getCart()">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    <span class="qty count-qty"><?php echo Yii::$app->session['cart.qty']; ?></span>
+                                </a>
+                            </li>
+                            <li>Ваша корзина <br> <?php echo Yii::$app->session['cart.qty']; ?> товаров - <?php echo number_format(Yii::$app->session['cart.sum'], 2, ',', ' '); ?>р.</li>
+                        </ul>
+                        <?php endif; ?>
                     </div>
 
                     <form method="get" action="<?php echo \yii\helpers\Url::to(['search/search']); ?>" class="block-serch">
@@ -149,6 +166,16 @@ ltAppAsset::register($this);
 
         </div>
     </footer>
+    <?php
+        \yii\bootstrap\Modal::begin([
+            'header' => '<h2>Корзина</h2>',
+            'id' => 'cart',
+            'size' => 'modal-lg',
+            'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button> <button type="button" class="btn btn-success">Оформить заказ</button> <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'
+        ]);
+
+        \yii\bootstrap\Modal::end();
+    ?>
 </div>
 <?php $this->endBody() ?>
 </body>
