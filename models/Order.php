@@ -38,7 +38,7 @@ class Order extends ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
+            [['id', 'name', 'email', 'phone', 'address'], 'required'],
             [['id', 'qty'], 'integer'],
             [['date_added', 'date_update'], 'safe'],
             [['sum'], 'number'],
