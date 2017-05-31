@@ -5,10 +5,7 @@ $(document).ready(function(){
         next: '.prev'
     });
 
-
-
-
-
+});
 
 function getCart(){
     $.ajax({
@@ -62,10 +59,6 @@ function clearCart() {
     });
 }
 
-    function setNewEntry(entry) {
-        $('.count-qty').html(entry);
-    }
-
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault(); //Отключаем переход по ссылке
     var id = $(this).data('id');
@@ -75,18 +68,10 @@ $('.add-to-cart').on('click', function (e) {
         type: 'GET',
         success: function (res) {
             if (!res) alert('Error!');
-            //console.log(res);
             showCart(res);
-            var cart = JSON.parse(res);
-            console.log(cart);
-
-            //setNewEntry(res.cart.sum);
-            //cart(res);
         },
         error: function () {
             alert('Error!');
         }
     });
-});
-
 });
