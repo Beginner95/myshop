@@ -27,7 +27,7 @@
                             <p>Опт. <span><?php echo number_format($product->wholesale_price, 2, ',', ' '); ?></span></p>
                             <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><h4><?php echo $product->name; ?></h4></a>
                             <div class="icon">
-                                <a href="#" data-id="<?php echo $product->id; ?>" class="label label-danger add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                                <a href="<?php echo \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?php echo $product->id; ?>" class="label label-danger add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                                 <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>" class="label label-info"><span class="glyphicon glyphicon-info-sign"></span></a>
                             </div>
                         </div>

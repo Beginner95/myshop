@@ -16,7 +16,7 @@
 
                     <div class="icon">
                         <input type="number" value="1" class="form-control" id="qty">
-                        <a href="#" data-id="<?php echo $product->id; ?>" class="btn btn-danger add-to-cart">Добавить в корзину</a>
+                        <a href="<?php echo \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?php echo $product->id; ?>" class="btn btn-danger add-to-cart">Добавить в корзину</a>
                     </div>
                     <div class="info">
                         <p><strong>Категория:</strong> <?php echo $product->category->name; ?></p>
