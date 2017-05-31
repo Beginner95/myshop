@@ -1,31 +1,31 @@
 <?php
-
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+    use yii\helpers\Html;
+    use yii\helpers\Url;
+    use yii\widgets\ActiveForm;
 ?>
 <div class="container">
-    <div class="row">
-        <div class="container-fluid">
-            <h1 class="title">Оформление заказа</h1>
-        </div>
-    </div>
 
-    <?php if (Yii::$app->session->hasFlash('success')) : ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo Yii::$app->session->getFlash('success'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (Yii::$app->session->hasFlash('error')) : ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo Yii::$app->session->getFlash('error'); ?>
-        </div>
-    <?php endif; ?>
 
     <?php if (!empty($session['cart'])) : ?>
+        <div class="row">
+            <div class="container-fluid">
+                <h1 class="title">Оформление заказа</h1>
+            </div>
+        </div>
+
+        <?php if (Yii::$app->session->hasFlash('success')) : ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (Yii::$app->session->hasFlash('error')) : ?>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('error'); ?>
+            </div>
+        <?php endif; ?>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
@@ -46,7 +46,11 @@ use yii\widgets\ActiveForm;
                         <td style="text-align: center;"><?php echo $item['qty']; ?></td>
                         <td style="text-align: center;"><?php echo number_format($item['price'], 2, ',', ' '); ?></td>
                         <td style="text-align: center;"><?php echo number_format($item['qty'] * $item['price'], 2, ',', ' '); ?></td>
-                        <td style="text-align: center;"><span data-id="<?php echo $id; ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
+                        <td style="text-align: center;">
+                            <a href="<?php echo \yii\helpers\Url::to(['/cart/del-item', 'id' => $id])?>" data-id="<?php echo $id; ?>" class="del-item">
+                                <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                            </a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 <tr>
@@ -71,6 +75,8 @@ use yii\widgets\ActiveForm;
         <?php ActiveForm::end(); ?>
         <hr>
     <?php else: ?>
-        <h3>Корзина пуста</h3>
+        <div class="container-fluid">
+            <h1 class="title">Корзина пуста</h1>
+        </div>
     <?php endif; ?>
 </div>

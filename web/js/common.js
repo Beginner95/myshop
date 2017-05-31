@@ -36,7 +36,7 @@ $('#cart .modal-body').on('click', '.del-item', function () {
         success: function (res) {
             if (!res) alert('Error!');
             showCart(res);
-            $('.cart > ul > li').html(res);
+            //$('.cart > ul > li').html(res);
         },
         error: function () {
             alert('Error!');

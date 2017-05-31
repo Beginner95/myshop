@@ -46,6 +46,9 @@ class CartController extends AppController
         $session->open();
         $cart = new Cart();
         $cart->recalc($id);
+        if (!Yii::$app->request->isAjax) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
 
