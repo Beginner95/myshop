@@ -15,7 +15,8 @@
                     <p><strong>Опт: </strong><?php echo number_format($product->wholesale_price, 2, ',', ' '); ?></p>
 
                     <div class="icon">
-                        <input type="number" class="form-control"><a href="#" class="btn btn-danger">Добавить в корзину</a>
+                        <input type="number" value="1" class="form-control" id="qty">
+                        <a href="#" data-id="<?php echo $product->id; ?>" class="btn btn-danger add-to-cart">Добавить в корзину</a>
                     </div>
                     <div class="info">
                         <p><strong>Категория:</strong> <?php echo $product->category->name; ?></p>
