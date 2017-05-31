@@ -5,6 +5,7 @@ namespace app\models;
 use yii\db\ActiveRecord;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "order".
@@ -32,13 +33,28 @@ class Order extends ActiveRecord
         return 'order';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date_added', 'date_update'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date_update'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'name', 'email', 'phone', 'address'], 'required'],
+            [['name', 'email', 'phone', 'address'], 'required'],
             [['id', 'qty'], 'integer'],
             [['date_added', 'date_update'], 'safe'],
             [['sum'], 'number'],
