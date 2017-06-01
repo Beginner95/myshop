@@ -175,9 +175,12 @@ body {
 
 .product figure img {
     width: 268px;
+    height: 270px;
 }
 
 .detail {
+    height: 150px;
+    overflow: hidden;
     background: #f9f9f9;
     text-align: center;
     border: 1px solid #dfdfdf;
@@ -202,6 +205,8 @@ body {
 
 .detail h4 {
     margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
 }
 
 .detail .label {
