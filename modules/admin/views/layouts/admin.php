@@ -96,14 +96,18 @@ ltAppAsset::register($this);
                                 <li><a href="#">Контакты</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вход <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Войти в личный кабинет</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Запрос на регистрацию</a></li>
-                                    </ul>
-                                </li>
+                                <?php if (!Yii::$app->user->isGuest) : ?>
+                                    <li><a href="<?php echo \yii\helpers\Url::to(['/site/logout']); ?>"><?php echo Yii::$app->user->identity['username']; ?> Выход</a></li>
+                                <?php else: ?>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вход <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Войти в личный кабинет</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Запрос на регистрацию</a></li>
+                                        </ul>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
 
                         </div><!-- /.navbar-collapse -->
@@ -113,9 +117,9 @@ ltAppAsset::register($this);
         </div>
     </header>
 
-    <?php echo $content; ?>
-
-
+    <div class="container">
+        <?php echo $content; ?>
+    </div>
 
     <div class="container">
         <footer>
