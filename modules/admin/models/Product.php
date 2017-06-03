@@ -28,6 +28,17 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    public $image;
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -47,9 +58,10 @@ class Product extends \yii\db\ActiveRecord
             [['price', 'wholesale_price'], 'number'],
             [['content', 'status', 'sale', 'new', 'hit'], 'string'],
             [['date_added', 'date_update'], 'safe'],
-            [['name', 'model', 'image'], 'string', 'max' => 200],
+            [['name', 'model'], 'string', 'max' => 200],
             [['keywords', 'description'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['image'], 'file', 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
@@ -92,5 +104,17 @@ class Product extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    public function upload(){
+        if($this->validate()){
+            $path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            @unlink($path);
+            return true;
+        }else{
+            return false;
+        }
     }
 }

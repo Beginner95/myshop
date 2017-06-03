@@ -14,7 +14,7 @@
             <tbody>
                 <?php foreach ($session['cart'] as $id => $item) : ?>
                     <tr>
-                        <td><?php echo \yii\helpers\Html::img("/web/img/products/{$item['img']}", ['alt' => $item['name'], 'height' => 50]); ?></td>
+                        <td><?php echo \yii\helpers\Html::img($item['img'], ['alt' => $item['name']]); ?></td>
                         <td><?php echo $item['name']; ?></td>
                         <td style="text-align: center;"><?php echo $item['qty']; ?></td>
                         <td style="text-align: center;"><?php echo number_format($item['price'], 2, ',', ' '); ?></td>

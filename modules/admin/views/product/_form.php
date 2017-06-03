@@ -12,8 +12,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 ?>
 
 <div class="product-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="form-group field-product-category-parent_id has-success">
         <label class="control-label" for="product-category-parent_id">Родительская категория</label>
@@ -27,7 +26,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'model')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
@@ -40,6 +39,7 @@ mihaildev\elfinder\Assets::noConflict($this);
           'editorOptions' => ElFinder::ckeditorOptions('elfinder',[/* Some CKEditor Options */]),
         ]);
     ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
 
     <?= $form->field($model, 'sale')->checkbox([ '0', '1', ]) ?>
 

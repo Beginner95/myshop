@@ -50,8 +50,8 @@
             <div class="container-fluid">
                 <h1 class="title">Популярные товары</h1>
             </div>
-            <?php //var_dump($hits); ?>
             <?php foreach ($hits as $hit) : ?>
+                <?php $mainImg = $hit->getImage();?>
                 <div class="span3 product">
                     <div>
                         <figure>
@@ -61,7 +61,7 @@
                             <?php if ($hit->sale !== null) : ?>
                                 <span class="sale">Расспродажа</span>
                             <?php endif; ?>
-                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>"><?php echo Html::img("/web/img/products/" . $hit->image, ['alt' => $hit->name]); ?></a>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $hit->id]); ?>"><?php echo Html::img($mainImg->getUrl('268x270'), ['alt' => $hit->name]); ?></a>
                         </figure>
                         <div class="detail">
                             <p>Опт. <span><?php echo number_format($hit->price, 2, ',', ' '); ?></span></p>

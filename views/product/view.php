@@ -7,7 +7,10 @@
         <div class="product-details">
             <div>
                 <figure>
-                    <?php echo Html::img("/web/img/products/" . $product->image, ['alt' => $product->name]); ?>
+                    <?php
+                        $mainImg = $product->getImage();
+                        echo Html::img($mainImg->getUrl(), ['alt' => $product->name]);
+                    ?>
                 </figure>
                 <div class="product-detail">
                     <h4><?php echo $product->name; ?></h4>

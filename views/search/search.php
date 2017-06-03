@@ -10,6 +10,7 @@
     <div class="row">
         <?php if (!empty($products)) : ?>
             <?php foreach ($products as $product) : ?>
+                <?php $mainImg = $product->getImage(); ?>
                 <div class="span3 product">
                     <div>
                         <figure>
@@ -20,7 +21,7 @@
                                 <span class="sale">Расспродажа</span>
                             <?php endif; ?>
 
-                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><?php echo Html::img("/web/img/products/" . $product->image, ['alt' => $product->name]); ?></a>
+                            <a href="<?php echo \yii\helpers\Url::to(['product/view', 'id' => $product->id]); ?>"><?php echo Html::img($mainImg->getUrl('268x270'), ['alt' => $product->name]); ?></a>
                         </figure>
                         <div class="detail">
                             <p>Розн. <span><?php echo number_format($product->price, 2, ',', ' '); ?></span></p>

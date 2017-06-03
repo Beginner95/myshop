@@ -20,9 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-//            'category_id',
             [
                 'attribute' => 'category_id',
                 'value'     => function($data) {
@@ -30,9 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'name',
-
-//            'model',
-//            'image',
             'price',
             'wholesale_price',
             [
@@ -63,13 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format'    => 'html',
             ],
-            'content',
-//             'hit',
-            // 'keywords',
-            // 'description',
-            // 'date_added',
-            // 'date_update',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
