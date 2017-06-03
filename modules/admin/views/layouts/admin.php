@@ -91,13 +91,25 @@ ltAppAsset::register($this);
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']) ?>
-                                <li><a href="#">Условия работы</a></li>
-                                <li><a href="#">Контакты</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['/admin']); ?>">Главная</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категории <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['category/index']); ?>">Список категории</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['category/create']); ?>">Добавить категорию</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товары <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['product/index']); ?>">Список товаров</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <?php if (!Yii::$app->user->isGuest) : ?>
-                                    <li><a href="<?php echo \yii\helpers\Url::to(['/site/logout']); ?>"><?php echo Yii::$app->user->identity['username']; ?> Выход</a></li>
+                                    <li><a href="<?php echo \yii\helpers\Url::to(['/site/logout']); ?>"><?php echo Yii::$app->user->identity['username']; ?> (Выход)</a></li>
                                 <?php else: ?>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вход <span class="caret"></span></a>
