@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format'    => 'html',
             ],
-
+            'content',
 //             'hit',
             // 'keywords',
             // 'description',

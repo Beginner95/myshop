@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Product */
@@ -30,13 +31,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'wholesale_price')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList([ '0' => 'Не опубликован', '1' => 'Опубликован', ]) ?>
 
-    <?= $form->field($model, 'sale')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?php
+        echo $form->field($model, 'content')->widget(CKEditor::className(),[
+            'editorOptions' => [
+                'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                'inline' => false, //по умолчанию false
+            ],
+        ]);
+    ?>
 
-    <?= $form->field($model, 'new')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'sale')->checkbox([ '0', '1', ]) ?>
 
-    <?= $form->field($model, 'hit')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'new')->checkbox([ '0', '1', ]) ?>
+
+    <?= $form->field($model, 'hit')->checkbox([ '0', '1', ]) ?>
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 

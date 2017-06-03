@@ -64,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'     => $model->hit ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>',
                 'format'    => 'html',
             ],
+            'content:html',
             'keywords',
             'description',
             'date_added',
