@@ -29,16 +29,41 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+//            'category_id',
+            [
+                'attribute' => 'category_id',
+                'value'     => $model->category->name,
+            ],
             'name',
             'model',
-            'image',
+
+            [
+                'attribute' => 'image',
+                'value'     => '<img src="/web/img/products/'. $model->image . '" width="100">',
+                'format'    => 'html',
+            ],
             'price',
             'wholesale_price',
-            'status',
-            'sale',
-            'new',
-            'hit',
+            [
+                'attribute' => 'status',
+                'value'     => $model->status ? '<span class="text-success">Опубликован</span>' : '<span class="text-danger">Не опубликован</span>',
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'sale',
+                'value'     => $model->sale ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>',
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'new',
+                'value'     => $model->new ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>',
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'hit',
+                'value'     => $model->hit ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>',
+                'format'    => 'html',
+            ],
             'keywords',
             'description',
             'date_added',

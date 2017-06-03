@@ -12,7 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <div class="form-group field-product-category-parent_id has-success">
+        <label class="control-label" for="product-category-parent_id">Родительская категория</label>
+        <select id="product-category-parent_id" class="form-control" name="Product[category_id]">
+            <option value="0">Самостоятельная категория</option>
+            <?= \app\components\MenuWidget::widget(['tpl' => 'select_product', 'model' => $model])?>
+        </select>
+    </div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

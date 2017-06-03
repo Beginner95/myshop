@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Products';
+$this->title = 'Списко товаров';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-index">
@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -22,16 +22,49 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'category_id',
+//            'category_id',
+            [
+                'attribute' => 'category_id',
+                'value'     => function($data) {
+                    return $data->category->name;
+                },
+            ],
             'name',
-            'model',
-            'image',
-             'price',
-             'wholesale_price',
-             'status',
-             'sale',
-             'new',
-             'hit',
+
+//            'model',
+//            'image',
+            'price',
+            'wholesale_price',
+            [
+                'attribute' => 'status',
+                'value'     => function($data) {
+                    return $data->status ? '<span class="text-success">Опубликован</span>' : '<span class="text-danger">Не опубликован</span>';
+                },
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'sale',
+                'value'     => function($data) {
+                    return $data->sale ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>';
+                },
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'new',
+                'value'     => function($data) {
+                    return $data->new ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>';
+                },
+                'format'    => 'html',
+            ],
+            [
+                'attribute' => 'hit',
+                'value'     => function($data) {
+                    return $data->hit ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>';
+                },
+                'format'    => 'html',
+            ],
+
+//             'hit',
             // 'keywords',
             // 'description',
             // 'date_added',
