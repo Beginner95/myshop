@@ -19,11 +19,27 @@
                         <a href="<?php echo \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?php echo $product->id; ?>" class="btn btn-danger add-to-cart">Добавить в корзину</a>
                     </div>
                     <div class="info">
-                        <p><strong>Категория:</strong> <?php echo $product->category->name; ?></p>
-                        <p><strong>Модель:</strong> <?php echo $product->model; ?></p>
-                        <p><strong>Стутс:</strong> Имеется на складе</p>
-                        <p><strong>Состояние:</strong> Новинка</p>
-                        <p><strong>Описание:</strong> <?php echo $product->description; ?></p>
+                        <p>
+                            <strong>Категория: </strong>
+                            <?php echo $product->category->name; ?>
+                        </p>
+                        <p>
+                            <strong>Модель: </strong>
+                            <?php echo $product->model; ?>
+                        </p>
+                        <p>
+                            <strong>Новинка: </strong>
+                            <?php echo $product->new ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>'; ?>
+                        </p>
+                        <p>
+                            <strong>Хит: </strong>
+                            <?php echo $product->hit ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>'; ?>
+                        </p>
+                        <p>
+                            <strong>Распродажа: </strong>
+                            <?php echo $product->sale ? '<span class="text-success">Да</span>' : '<span class="text-danger">Нет</span>'; ?>
+                        </p>
+                        <p><strong>Описание:</strong> <?php echo $product->content; ?></p>
                     </div>
                 </div>
             </div>
