@@ -102,12 +102,12 @@ body {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
-    background: #333;
+    background: #242323;
     color: #999;
 }
 
 .navbar-nav > li > .dropdown-menu {
-    background: #999;
+    background: #282626;
 }
 
 .dropdown-menu > li > a {
