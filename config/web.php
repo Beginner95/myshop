@@ -17,6 +17,7 @@ $config = [
 
         'client' => [
             'class' => 'app\modules\client\Module',
+            'layout' => 'client',
         ],
 
         'yii2images' => [
