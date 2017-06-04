@@ -2,12 +2,12 @@
 
 namespace app\modules\client\controllers;
 
-use yii\web\Controller;
+use app\modules\client\controllers\AppClientController;
 
 /**
  * Default controller for the `client` module
  */
-class DefaultController extends Controller
+class ClientController extends AppClientController
 {
     /**
      * Renders the index view for the module
