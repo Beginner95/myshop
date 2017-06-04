@@ -34,9 +34,31 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]); ?>
     </div>
-    <?php if (!empty($model)) : ?>
+    <?php if (!empty($items)) : ?>
     <div class="col-md-9">
-        <?php var_dump($model); ?>
+        <h1>Детали заказа</h1>
+        <br>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Наименование товара</th>
+                    <th>Кол-во</th>
+                    <th>Цена</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($items as $item) : ?>
+                <tr>
+                    <td><?php echo $item->name; ?></td>
+                    <td><?php echo $item->qty_item; ?></td>
+                    <td><?php echo $item->price; ?></td>
+                    <td><?php echo $item->sum_item; ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
     </div>
     <?php endif; ?>
 </div>

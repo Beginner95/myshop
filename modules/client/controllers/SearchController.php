@@ -1,11 +1,11 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\client\controllers;
 use yii\data\Pagination;
 use app\models\Product;
 use Yii;
 
-class SearchController extends AppController
+class SearchController extends AppClientController
 {
     public function actionSearch() {
         $q = trim(Yii::$app->request->get('q'));

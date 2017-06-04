@@ -4,21 +4,6 @@
     use yii\widgets\ActiveForm;
 ?>
 <div class="container">
-
-    <?php if (Yii::$app->session->hasFlash('success')) : ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo Yii::$app->session->getFlash('success'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (Yii::$app->session->hasFlash('error')) : ?>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo Yii::$app->session->getFlash('error'); ?>
-        </div>
-    <?php endif; ?>
-
     <?php if (!empty($session['cart'])) : ?>
         <div class="row">
             <div class="container-fluid">
@@ -65,14 +50,19 @@
             <div class="clear"></div>
         </div>
         <hr>
+        <h1 class="title">Данные клиента</h1>
         <?php $form = ActiveForm::begin(); ?>
-            <?php echo $form->field($order, 'name'); ?>
-            <?php echo $form->field($order, 'email'); ?>
-            <?php echo $form->field($order, 'phone'); ?>
-            <?php echo $form->field($order, 'address'); ?>
+            <?php echo $form->field($order, 'firstName')->textInput(['value'=> $fio['firstName']]); ?>
+            <?php echo $form->field($order, 'secondName')->textInput(['value'=> $fio['secondName']]); ?>
+            <?php echo $form->field($order, 'lastName')->textInput(['value'=> $fio['lastName']]); ?>
+            <?php echo $form->field($order, 'email')->textInput(['value'=> $fio['email']]); ?>
+            <?php echo $form->field($order, 'phone')->textInput(['value'=> $fio['phone']]); ?>
+            <?php echo $form->field($order, 'address')->textInput(['value'=> $fio['address']]); ?>
             <?php echo Html::submitButton('Заказать', ['class' => 'btn btn-success']); ?>
         <?php ActiveForm::end(); ?>
-        <hr>
+        <br>
+        <br>
+        <br>
     <?php else: ?>
         <div class="container-fluid">
             <h1 class="title">Корзина пуста</h1>

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vaharsolta
- * Date: 26.05.2017
- * Time: 5:16
- */
 
-namespace app\models;
+namespace app\modules\client\models;
 use yii\db\ActiveRecord;
 
 class Category extends ActiveRecord

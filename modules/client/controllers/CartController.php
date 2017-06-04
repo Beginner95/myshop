@@ -1,14 +1,15 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\client\controllers;
 
-use app\models\Cart;
+use app\modules\client\models\Cart;
 use app\models\Product;
-use app\models\Order;
-use app\models\OrderItems;
+use app\modules\client\models\Client;
+use app\modules\client\models\OrderClient;
+use app\modules\client\models\OrderItemsClient;
 use Yii;
 
-class CartController extends AppController
+class CartController extends AppClientController
 {
     public function actionAdd() {
         $id = Yii::$app->request->get('id');
@@ -67,12 +68,15 @@ class CartController extends AppController
         $session = Yii::$app->session;
         $session->open();
         $this->setMeta('Корзина');
-        $order = new Order();
+        $order = new OrderClient();
+//        var_dump(Yii::$app->user->identity);
+//        die;
         if ($order->load(Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
+            $order->client_id = Yii::$app->user->identity->id;
             if ($order->save()) {
-                $this->saveOrderItems($session['cart'], $order->id);
+                $this->saveOrderItemsClient($session['cart'], $order->id);
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами.');
 
                 Yii::$app->mailer->compose('order', ['session' => $session])
@@ -89,14 +93,22 @@ class CartController extends AppController
                 Yii::$app->session->setFlash('error', 'Ошибка оформления заказа.');
             }
         }
-        return $this->render('view', compact('session', 'order'));
+        $fio = [
+            'firstName' => Yii::$app->user->identity->firstName,
+            'secondName' => Yii::$app->user->identity->secondName,
+            'lastName' => Yii::$app->user->identity->lastName,
+            'email' => Yii::$app->user->identity->email,
+            'phone' => Yii::$app->user->identity->phone,
+            'address' => Yii::$app->user->identity->address,
+        ];
+        return $this->render('view', compact('session', 'order', 'fio'));
     }
 
-    protected function saveOrderItems($items, $order_id)
+    protected function saveOrderItemsClient($items, $order_id)
     {
         foreach ($items as $id => $item) {
-            $order_items = new OrderItems();
-            $order_items->order_id = $order_id;
+            $order_items = new OrderItemsClient();
+            $order_items->order_client_id = $order_id;
             $order_items->product_id = $id;
             $order_items->name = $item['name'];
             $order_items->price = $item['price'];

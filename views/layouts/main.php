@@ -105,7 +105,7 @@ ltAppAsset::register($this);
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вход <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Войти в личный кабинет</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['/client/default']); ?>">Войти в личный кабинет</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="#">Запрос на регистрацию</a></li>
                                     </ul>

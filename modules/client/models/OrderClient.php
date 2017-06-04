@@ -61,13 +61,13 @@ class OrderClient extends ActiveRecord
     {
         return [
             [['client_id'], 'required'],
-            [['client_id', 'qty'], 'integer'],
+            [['id', 'client_id', 'qty'], 'integer'],
             [['date_added', 'date_update'], 'safe'],
             [['sum'], 'number'],
             [['status'], 'string'],
-            [['name', 'address'], 'string', 'max' => 255],
+            [['secondName', 'address'], 'string', 'max' => 255],
             [['email', 'phone'], 'string', 'max' => 45],
-            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];
     }
 
@@ -84,10 +84,12 @@ class OrderClient extends ActiveRecord
 //            'qty' => 'Qty',
             'sum' => 'Сумма',
             'status' => 'Статус заказа',
-//            'name' => 'Name',
-//            'email' => 'Email',
-//            'phone' => 'Phone',
-//            'address' => 'Address',
+            'firstName' => 'Фамилия',
+            'secondName' => 'Имя',
+            'lastName' => 'Отчество',
+            'email' => 'E-mail',
+            'phone' => 'Телефон',
+            'address' => 'Адрес',
         ];
     }
 
@@ -96,7 +98,7 @@ class OrderClient extends ActiveRecord
      */
     public function getClient()
     {
-        return $this->hasOne(Client::className(), ['id' => 'client_id']);
+        return $this->hasOne(User::className(), ['id' => 'client_id']);
     }
 
     /**

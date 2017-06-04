@@ -1,20 +1,41 @@
 <?php
 
 namespace app\modules\client\controllers;
+use yii\data\Pagination;
+use app\modules\client\models\Product;
+use app\modules\client\models\Payment;
+use Yii;
 
-use app\modules\client\controllers\AppClientController;
-
-/**
- * Default controller for the `client` module
- */
-class ClientController extends AppClientController
+class DefaultController extends AppClientController
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex()
     {
-        return $this->render('index');
+        $session =Yii::$app->session;
+        $session->open();
+        $balance = $this->actionBalance();
+        return $this->render('index', compact('balance', 'session'));
     }
+
+    public function actionSearch() {
+        $q = trim(Yii::$app->request->get('q'));
+        $this->setMeta('Поиск ' . $q);
+        if (empty($q)) {
+            return $this->render('index', compact('q'));
+        }
+        $query = Product::find()->where(['like', 'name', $q]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 10, 'forcePageParam' => false, 'pageSizeParam' => false]);
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $balance = $this->actionBalance();
+        $session =Yii::$app->session;
+        $session->open();
+        return $this->render('index', compact('products', 'pages', 'q', 'balance', 'session'));
+    }
+
+    public function actionBalance()
+    {
+        return $balance = Payment::find()->where(['client_id' => Yii::$app->user->identity->id])->orderBy('id DESC')->all();
+    }
+
+
+
 }
