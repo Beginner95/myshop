@@ -1,12 +1,3 @@
-$(document).ready(function(){
-	$( ".slider-slides" ).cycle({
-        pager:'.slider-btn',
-        prev: '.next',
-        next: '.prev'
-    });
-
-});
-
 function getCart(){
     $.ajax({
         url: '/cart/show',
@@ -36,7 +27,7 @@ $('#cart .modal-body').on('click', '.del-item', function () {
         success: function (res) {
             if (!res) alert('Error!');
             showCart(res);
-            //$('.cart > ul > li').html(res);
+            $('#cart-client').html(res);
         },
         error: function () {
             alert('Error!');
