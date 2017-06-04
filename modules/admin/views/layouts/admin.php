@@ -27,53 +27,7 @@ ltAppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="container-fluid">
-                    <nav class="top">
-                        <div class="cart">
-                            <?php if (empty(Yii::$app->session['cart'])) : ?>
-                                <ul>
-                                    <li style="padding-left: 35px">
-                                        <a href="#" onclick="return getCart()">
-                                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                                        </a>
-                                    </li>
-                                    <li style="margin-top: 8px;">Корзина пуста!</li>
-                                </ul>
 
-                            <?php else: ?>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="return getCart()">
-                                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                                            <span class="qty count-qty"><?php echo Yii::$app->session['cart.qty']; ?></span>
-                                        </a>
-                                    </li>
-                                    <li>Ваша корзина <br> <?php echo Yii::$app->session['cart.qty']; ?> товаров - <?php echo number_format(Yii::$app->session['cart.sum'], 2, ',', ' '); ?>р.</li>
-                                </ul>
-                            <?php endif; ?>
-                        </div>
-
-                        <form method="get" action="<?php echo \yii\helpers\Url::to(['search/search']); ?>" class="block-serch">
-                            <div class="form-group">
-                                <input type="text" name="q" class="form-control" placeholder="Поиск по товарам">
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
-                        </form>
-
-                        <div class="block-phone">
-                            <p>Справочная служба</p>
-                            <p class="phone-number">+7 (929) 888 02 05</p>
-                        </div>
-                        <div class="logo">
-                            <a class="navbar-brand" href="<?php echo \yii\helpers\Url::home(); ?>">Logotip</a>
-                        </div>
-                        <div class="clear"></div>
-                    </nav>
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
                 <nav class="navbar navbar-default">
@@ -128,71 +82,18 @@ ltAppAsset::register($this);
             </div>
         </div>
     </header>
-
+<?php if (Yii::$app->user->identity->id === 1) : ?>
     <div class="container">
         <?php echo $content; ?>
     </div>
-
+<?php else: ?>
     <div class="container">
-        <footer>
-            <div class="row"></div>
-            <div class="row">
-                <div class="container-fluid">
-                    <div class="col-md-4">
-                        <h2>ООО "Ромашка"</h2>
-                        <p>Купив один раз у нас товар, вы обязательно придете к нам за покупками еще</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Навигация</h2>
-                        <nav class="menu-bottom">
-                            <ul>
-                                <li><a href="#">Главная</a></li>
-                                <li><a href="#">PC</a></li>
-                                <li><a href="#">iPhone</a></li>
-                                <li><a href="#">Samsung</a></li>
-                                <li><a href="#">Sony</a></li>
-                                <li><a href="#">Lume</a></li>
-                                <li><a href="#">Прочие телефоны</a></li>
-                                <li><a href="#">Аксессуары</a></li>
-                                <li><a href="#">Рации</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Контакты</h2>
-                        <ul class="contacts">
-                            <li>Тел: +1 (999) 999 99 99</li>
-                            <li>Email: admin@admin.ru</li>
-                            <li>Адрес: Ромашкина 10</li>
-                            <br>
-                            <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir"></div>
-                        </ul>
-                        <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
-                        <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="copy">
-                    <p>&copy 2017</p>
-                </div>
-
-            </div>
-        </footer>
-        <?php
-        \yii\bootstrap\Modal::begin([
-            'header' => '<h2>Корзина</h2>',
-            'id' => 'cart',
-            'size' => 'modal-lg',
-            'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button> 
-                         <a href="' . \yii\helpers\Url::to(['cart/view']) . '" class="btn btn-success">Оформить заказ</a> 
-                         <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'
-        ]);
-
-        \yii\bootstrap\Modal::end();
-        ?>
+        <div class="row">
+        <div class="alert alert-warning" role="alert">Вам сюда нельзя</div>
+        </div>
     </div>
+<?php endif; ?>
+
     <?php $this->endBody() ?>
     </body>
     </html>
