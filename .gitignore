@@ -16,6 +16,7 @@ Thumbs.db
 
 /web/img/
 /web/assets/
+/web/upload/
 # composer itself is not needed
 composer.phar
 
