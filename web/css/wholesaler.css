@@ -1,0 +1,152 @@
+ul, li, hr {
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    font: 18px sans-serif;
+    margin: 15px 0;
+    display: block;
+}
+
+.auth_spec {
+    padding: 15px 10px 10px 17px;
+    font-weight: bold;
+}
+
+.row-two-left, .row-two-right {
+    font: 25px Arial sans-serif;
+    float: left;
+}
+
+.row-two-right {
+    float: right;
+}
+
+.col-md-6 {
+    border-left: 1px solid #e0e0e0;
+
+}
+
+.msg-left p {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.msg-right p {
+    font-weight: bold;
+    text-align: center;
+}
+
+.no-in-the-price-list, .no-in-the-price-count, .delivery-method{
+    width: 486px;
+    float: left;
+    margin-right: 5px;
+}
+
+.block-search {
+    width: 60%;
+    margin: 20px auto 0 auto;
+}
+
+.search {
+    width: 81%;
+    float: left;
+    margin-right: 2px;
+}
+
+.no-in-the-price-count {
+    width: 65px;
+}
+
+.delivery-method {
+    margin-right: 75px;
+}
+
+.my-table {
+    margin-top: 12px;
+}
+
+.my-table th {
+    text-align: center;
+}
+
+.my-table td:nth-child(1){
+    width: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.my-table td:nth-child(2){
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.my-table td:nth-child(3) {
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.my-table td:nth-child(4) {
+    vertical-align: middle;
+}
+
+.my-table td:nth-child(5) {
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.my-table-orders td, th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.my-table-orders td:first-child {
+    width: 440px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.history-left {
+    margin-top: 10px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.history-left h3 {
+    margin-top: 0;
+}
+
+.history-left td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.order {
+    margin-top: 45px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 4px;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 2px;
+}
+
+
+div.required .control-label:before {
+    content: '* ';
+    color: #F00;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-horizontal .control-label {
+    padding-top: 4px;
+}
+
+
