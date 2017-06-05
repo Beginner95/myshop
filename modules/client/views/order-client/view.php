@@ -59,6 +59,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </tbody>
         </table>
-    </div>
+
+    <?php else: ?>
+        <h1>Все товары по данному заказу возвращены</h1>
     <?php endif; ?>
+    </div>
 </div>
