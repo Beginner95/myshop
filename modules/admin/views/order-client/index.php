@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">
 
-    <h1><?= Html::encode($this->title) ?> | <a href="<?php echo \yii\helpers\Url::to(['order-client/index']); ?>">Заказы от клиетов</a> </h1>
+    <h1><?= Html::encode($this->title) ?> | <a href="#">Заказы от клиетов</a> </h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
