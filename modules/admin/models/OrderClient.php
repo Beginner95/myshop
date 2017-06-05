@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use app\modules\client\models\OrderItemsClient;
 use Yii;
 
 /**
@@ -20,14 +21,14 @@ use Yii;
  *
  * @property OrderItems[] $orderItems
  */
-class Order extends \yii\db\ActiveRecord
+class OrderClient extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'order';
+        return 'order_client';
     }
 
     /**
@@ -40,7 +41,7 @@ class Order extends \yii\db\ActiveRecord
             [['qty'], 'integer'],
             [['sum'], 'number'],
             [['status'], 'string'],
-            [['name', 'address'], 'string', 'max' => 255],
+            [['secondName', 'address'], 'string', 'max' => 255],
             [['email', 'phone'], 'string', 'max' => 45],
         ];
     }
@@ -57,7 +58,7 @@ class Order extends \yii\db\ActiveRecord
             'qty' => 'Кол-во',
             'sum' => 'Сумма',
             'status' => 'Статус',
-            'name' => 'Имя',
+            'secondName' => 'Имя',
             'email' => 'E-mail',
             'phone' => 'Телефон',
             'address' => 'Адрес',
@@ -69,6 +70,6 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getOrderItems()
     {
-        return $this->hasMany(OrderItems::className(), ['order_id' => 'id']);
+        return $this->hasMany(OrderItemsClient::className(), ['order_client_id' => 'id']);
     }
 }

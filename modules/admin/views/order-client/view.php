@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Order */
 
-$this->title = $model->name;
+$this->title = $model->secondName;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -39,14 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => !$model->status ? '<span class="text-danger">Активен</span>' : '<span class="text-success">Завершен</span>',
                 'format' => 'html',
             ],
-            'name',
+            'secondName',
             'email:email',
             'phone',
             'address',
         ],
     ]) ?>
 
-    <?php $items = $model->orderItems;?>
+    <?php $items = $model->orderItems; ?>
+    <?php if (!empty($items)) : ?>
     <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
@@ -69,5 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
         </table>
     </div>
-
+    <?php else: ?>
+        <h3>Возможно по данному заказу все товары клиент вернул</h3>
+    <?php endif; ?>
 </div>

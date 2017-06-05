@@ -4,7 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
 use Yii;
-use app\modules\admin\models\Order;
+use app\modules\admin\models\OrderClient;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * OrderController implements the CRUD actions for Order model.
  */
-class OrderController extends AppController
+class OrderClientController extends AppController
 {
     /**
      * @inheritdoc
@@ -36,7 +36,7 @@ class OrderController extends AppController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Order::find(),
+            'query' => OrderClient::find(),
             'pagination' => [
                 'pageSize' => 10,
             ],
@@ -71,7 +71,7 @@ class OrderController extends AppController
      */
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new OrderClient();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -118,12 +118,12 @@ class OrderController extends AppController
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Order the loaded model
+     * @return OrderClient the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = OrderClient::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
