@@ -79,6 +79,7 @@ class CartController extends AppClientController
             $order->client_id = Yii::$app->user->identity->id;
 
             if ($order->save()) {
+                $this->setBalance($order->sum, $order->id);
                 $this->saveOrderItemsClient($session['cart'], $order->id);
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами.');
 
@@ -123,16 +124,23 @@ class CartController extends AppClientController
         }
     }
     
-    protected function setBalance($order_id, $sum)
+    protected function setBalance($sum, $order_id)
     {
-        
+        $payment = new Payment();
+        $payment->client_id = Yii::$app->user->identity->id;
+        $payment->order_client_id = $order_id;
+        $payment->amount = $this->getBalance()['amount'] - $sum;
+        $payment->description = 'Оплата заказа ' . $order_id;
+        $payment->save();
     }
 
     protected function getBalance()
     {
         return Payment::find()
+            ->select(['amount'])
             ->where(['client_id' => Yii::$app->user->identity->id])
+            ->asArray()
             ->orderBy('id DESC')
-            ->all();
+            ->one();
     }
 }
