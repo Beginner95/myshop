@@ -8,6 +8,7 @@ use app\modules\client\models\Client;
 use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderClient;
 use app\modules\client\models\OrderItemsClient;
+use app\modules\client\models\Payment;
 use Yii;
 
 class CartController extends AppClientController
@@ -120,5 +121,18 @@ class CartController extends AppClientController
             $order_items->sum_item = $item['qty'] * $item['price'];
             $order_items->save();
         }
+    }
+    
+    protected function setBalance($order_id, $sum)
+    {
+        
+    }
+
+    protected function getBalance()
+    {
+        return Payment::find()
+            ->where(['client_id' => Yii::$app->user->identity->id])
+            ->orderBy('id DESC')
+            ->all();
     }
 }
