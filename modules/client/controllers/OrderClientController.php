@@ -27,7 +27,7 @@ class OrderClientController extends AppClientController
         $dataProvider = new ActiveDataProvider([
             'query' => OrderClient::find(),
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 20,
             ],
             'sort' => [
                 'defaultOrder' => [

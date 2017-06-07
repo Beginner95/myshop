@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderItemsClient;
 use Yii;
 
@@ -9,6 +10,7 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property integer $id
+ * @property integer $delivery_id
  * @property string $date_added
  * @property string $date_update
  * @property integer $qty
@@ -37,8 +39,8 @@ class OrderClient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_added', 'date_update'], 'safe'],
-            [['qty'], 'integer'],
+            [['date_added', 'date_update', 'comment'], 'safe'],
+            [['qty', 'delivery_id'], 'integer'],
             [['sum'], 'number'],
             [['status'], 'string'],
             [['secondName', 'address'], 'string', 'max' => 255],
@@ -62,6 +64,8 @@ class OrderClient extends \yii\db\ActiveRecord
             'email' => 'E-mail',
             'phone' => 'Телефон',
             'address' => 'Адрес',
+            'delivery_id' => 'Способ доставки',
+            'comment' => 'Дополнение к заказу',
         ];
     }
 
@@ -71,5 +75,10 @@ class OrderClient extends \yii\db\ActiveRecord
     public function getOrderItems()
     {
         return $this->hasMany(OrderItemsClient::className(), ['order_client_id' => 'id']);
+    }
+
+    public function getDelivery()
+    {
+        return $this->hasOne(Delivery::className(), ['id' => 'delivery_id']);
     }
 }

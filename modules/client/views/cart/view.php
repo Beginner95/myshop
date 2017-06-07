@@ -3,6 +3,7 @@
     use yii\helpers\Url;
     use yii\widgets\ActiveForm;
 ?>
+
 <div class="container">
     <?php if (!empty($session['cart'])) : ?>
         <div class="row">
@@ -49,15 +50,22 @@
             </table>
             <div class="clear"></div>
         </div>
+        <?php $form = ActiveForm::begin(); ?>
+        <?php echo $form->field($order, 'comment')->textInput(['placeholder' => 'Наименование товара кторого вы не нашли в прайсе']); ?>
         <hr>
         <h1 class="title">Данные клиента</h1>
-        <?php $form = ActiveForm::begin(); ?>
+
             <?php echo $form->field($order, 'firstName')->textInput(['value'=> $fio['firstName']]); ?>
             <?php echo $form->field($order, 'secondName')->textInput(['value'=> $fio['secondName']]); ?>
             <?php echo $form->field($order, 'lastName')->textInput(['value'=> $fio['lastName']]); ?>
             <?php echo $form->field($order, 'email')->textInput(['value'=> $fio['email']]); ?>
             <?php echo $form->field($order, 'phone')->textInput(['value'=> $fio['phone']]); ?>
             <?php echo $form->field($order, 'address')->textInput(['value'=> $fio['address']]); ?>
+            <?php
+                $items = \yii\helpers\ArrayHelper::map($delivery, 'id', 'name');
+                echo $form->field($order, 'delivery_id')->dropDownList($items);
+            ?>
+
             <?php echo Html::submitButton('Заказать', ['class' => 'btn btn-success']); ?>
         <?php ActiveForm::end(); ?>
         <br>
@@ -65,7 +73,7 @@
         <br>
     <?php else: ?>
         <div class="container-fluid">
-            <h1 class="title">Корзина пуста</h1>
+            <h1 class="title">Ваш заказ принят, ожидайте!</h1>
         </div>
     <?php endif; ?>
 </div>

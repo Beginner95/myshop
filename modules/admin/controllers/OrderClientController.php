@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
+use app\modules\client\models\Delivery;
 use Yii;
 use app\modules\admin\models\OrderClient;
 use yii\data\ActiveDataProvider;

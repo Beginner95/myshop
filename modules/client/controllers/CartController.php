@@ -5,6 +5,7 @@ namespace app\modules\client\controllers;
 use app\modules\client\models\Cart;
 use app\models\Product;
 use app\modules\client\models\Client;
+use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderClient;
 use app\modules\client\models\OrderItemsClient;
 use Yii;
@@ -69,12 +70,13 @@ class CartController extends AppClientController
         $session->open();
         $this->setMeta('Корзина');
         $order = new OrderClient();
-//        var_dump(Yii::$app->user->identity);
-//        die;
+
+
         if ($order->load(Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
             $order->client_id = Yii::$app->user->identity->id;
+
             if ($order->save()) {
                 $this->saveOrderItemsClient($session['cart'], $order->id);
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами.');
@@ -93,6 +95,8 @@ class CartController extends AppClientController
                 Yii::$app->session->setFlash('error', 'Ошибка оформления заказа.');
             }
         }
+
+        $delivery = Delivery::find()->all();
         $fio = [
             'firstName' => Yii::$app->user->identity->firstName,
             'secondName' => Yii::$app->user->identity->secondName,
@@ -101,7 +105,7 @@ class CartController extends AppClientController
             'phone' => Yii::$app->user->identity->phone,
             'address' => Yii::$app->user->identity->address,
         ];
-        return $this->render('view', compact('session', 'order', 'fio'));
+        return $this->render('view', compact('session', 'order', 'fio', 'delivery'));
     }
 
     protected function saveOrderItemsClient($items, $order_id)

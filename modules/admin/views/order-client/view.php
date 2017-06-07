@@ -11,9 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-view">
-
     <h1>Просмотр заказа №<?= $model->id ?></h1>
-
     <p>
         <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
@@ -33,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_update',
             'qty',
             'sum',
-//            'status',
             [
                 'attribute' => 'status',
                 'value' => !$model->status ? '<span class="text-danger">Активен</span>' : '<span class="text-success">Завершен</span>',
@@ -43,6 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'phone',
             'address',
+            [
+                'attribute' => 'delivery_id',
+                'value'     => $model->delivery->name,
+            ],
+            'comment',
         ],
     ]) ?>
 

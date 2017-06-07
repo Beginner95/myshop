@@ -12,6 +12,7 @@ use yii\db\Expression;
  *
  * @property integer $id
  * @property integer $client_id
+ * @property integer $delivery_id
  * @property string $date_added
  * @property string $date_update
  * @property integer $qty
@@ -61,8 +62,8 @@ class OrderClient extends ActiveRecord
     {
         return [
             [['client_id'], 'required'],
-            [['id', 'client_id', 'qty'], 'integer'],
-            [['date_added', 'date_update'], 'safe'],
+            [['id', 'client_id', 'delivery_id', 'qty'], 'integer'],
+            [['date_added', 'date_update', 'comment'], 'safe'],
             [['sum'], 'number'],
             [['status'], 'string'],
             [['secondName', 'address'], 'string', 'max' => 255],
@@ -79,6 +80,7 @@ class OrderClient extends ActiveRecord
         return [
 //            'id' => 'ID',
 //            'client_id' => 'Client ID',
+            'delivery_id' => 'Способ доставки',
             'date_added' => 'Дата',
 //            'date_update' => 'Date Update',
 //            'qty' => 'Qty',
@@ -90,6 +92,7 @@ class OrderClient extends ActiveRecord
             'email' => 'E-mail',
             'phone' => 'Телефон',
             'address' => 'Адрес',
+            'comment' => 'Чего нет в прайсе'
         ];
     }
 
