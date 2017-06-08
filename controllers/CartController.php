@@ -27,7 +27,6 @@ class CartController extends AppController
         }
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
-
     }
     
     public function actionClear() {
@@ -104,5 +103,13 @@ class CartController extends AppController
             $order_items->sum_item = $item['qty'] * $item['price'];
             $order_items->save();
         }
+    }
+    
+    public function actionViewCart()
+    {
+        $session =Yii::$app->session;
+        $session->open();
+        $this->layout = false;
+        return $this->render('cart', compact('session'));
     }
 }

@@ -52,7 +52,12 @@ ltAppAsset::register($this);
                                     <span class="qty count-qty"><?php echo Yii::$app->session['cart.qty']; ?></span>
                                 </a>
                             </li>
-                            <li>Ваша корзина <br> <?php echo Yii::$app->session['cart.qty']; ?> товаров - <?php echo number_format(Yii::$app->session['cart.sum'], 2, ',', ' '); ?>р.</li>
+                            <li>
+                                Ваша корзина <br>
+                                <?php echo Yii::$app->session['cart.qty']; ?>
+                                товаров -
+                                <?php echo number_format(Yii::$app->session['cart.sum'], 2, ',', ' '); ?>р.
+                            </li>
                         </ul>
                         <?php endif; ?>
                     </div>

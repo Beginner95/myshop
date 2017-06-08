@@ -36,7 +36,7 @@ $('#cart .modal-body').on('click', '.del-item', function () {
         success: function (res) {
             if (!res) alert('Error!');
             showCart(res);
-            //$('.cart > ul > li').html(res);
+            viewCart();
         },
         error: function () {
             alert('Error!');
@@ -70,9 +70,23 @@ $('.add-to-cart').on('click', function (e) {
         success: function (res) {
             if (!res) alert('Error!');
             showCart(res);
+            viewCart();
         },
         error: function () {
             alert('Error!');
         }
     });
 });
+
+function viewCart() {
+    $.ajax({
+        url: '/cart/view-cart',
+        type: 'GET',
+        success: function (res) {
+            $('.cart').html(res);
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+}
