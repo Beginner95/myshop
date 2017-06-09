@@ -11,7 +11,7 @@ use yii\web\HttpException;
 class CategoryController extends AppController
 {
     public function actionIndex() {
-        $hits = Product::find()->where(['hit' => '1'])->limit(8)->all();
+        $hits = Product::find()->where(['hit' => '1', 'status' => '1'])->limit(8)->all();
         return $this->render('index', compact('hits'));
     }
 
@@ -24,7 +24,7 @@ class CategoryController extends AppController
         }
 
         //$products = Product::find()->where(['category_id' => $id])->all();
-        $query = Product::find()->where(['category_id' => $id]);
+        $query = Product::find()->where(['category_id' => $id, 'status' => '1']);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 12, 'forcePageParam' => false, 'pageSizeParam' => false]);
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
         $this->setMeta('Магазин ' . $category->name, $category->keywords, $category->description);
