@@ -83,7 +83,7 @@ ltAppAsset::register($this);
             </div>
         </div>
     </header>
-<?php if (Yii::$app->user->identity->id === 1) : ?>
+<?php if (Yii::$app->user->identity->id == 1) : ?>
     <div class="container">
         <?php echo $content; ?>
     </div>
