@@ -90,7 +90,7 @@ ltAppAsset::register($this);
 <?php else: ?>
     <div class="container">
         <div class="row">
-        <div class="alert alert-warning" role="alert">Вам сюда нельзя</div>
+        <div class="alert alert-warning" role="alert">Вам сюда нельзя <a href="<?php echo \yii\helpers\Url::to(['/']); ?>">Вернуться на главную</a> </div>
         </div>
     </div>
 <?php endif; ?>
