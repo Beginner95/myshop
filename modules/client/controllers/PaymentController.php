@@ -1,17 +1,19 @@
 <?php
 
 namespace app\modules\client\controllers;
+use app\modules\client\models\Payment;
 use app\modules\client\models\Transaction;
 use Yii;
 use yii\data\ActiveDataProvider;
 
-class TransactionController extends AppClientController
+class PaymentController extends AppClientController
 {
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Transaction::find()->with('user'),
+            'query' => Transaction::find()->orderBy('status ASC')->where(['user_id' => Yii::$app->user->identity->id]),
         ]);
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -23,12 +25,12 @@ class TransactionController extends AppClientController
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->identity->id;
             $model->save();
-            return $this->redirect(['transaction/index']);
+            return $this->redirect(['payment/history']);
         } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
-    
+
 }

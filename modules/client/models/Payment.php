@@ -11,6 +11,7 @@ use yii\db\Expression;
  *
  * @property integer $id
  * @property integer $client_id
+ * @property integer $status
  * @property integer $order_client_id
  * @property float $amount
  * @property string $description
@@ -28,7 +29,6 @@ class Payment extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['date_operation', 'date_operation'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['date_operation'],
                 ],
-                // если вместо метки времени UNIX используется datetime:
                 'value' => new Expression('NOW()'),
             ],
         ];
@@ -45,7 +45,14 @@ class Payment extends ActiveRecord
             [['id', 'client_id', 'order_client_id'], 'integer'],
             [['amount'], 'number'],
             [['description', 'date_operation'], 'string'],
+        ];
+    }
 
+    public function attributeLabels()
+    {
+        return [
+            'amount' => 'Сумма',
+            'description' => 'Метод оплаты'
         ];
     }
 }
