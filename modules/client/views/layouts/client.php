@@ -58,7 +58,7 @@ ltAppAsset::register($this);
                                     </ul>
                                 </li>
 
-                                <li><a href="">Оформить возврат</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['return/index']); ?>">Оформить возврат</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['payment/create']); ?>">Внести оплату</a></li>
                                 <li><a href="">Сменить пароль</a></li>
                                 <li><a href="">Скачать прайс</a></li>
