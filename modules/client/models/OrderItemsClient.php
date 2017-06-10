@@ -7,6 +7,11 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use Yii;
 
+/**
+ * Class OrderItemsClient
+ * @package app\modules\client\models
+ * @property string $name
+ */
 class OrderItemsClient extends ActiveRecord
 {
     public static function tableName()
@@ -32,7 +37,7 @@ class OrderItemsClient extends ActiveRecord
     public function rules()
     {
         return [
-            [['order_client_id', 'product_id'], 'required'],
+            [['client_id', 'order_client_id', 'product_id'], 'required'],
             [['id', 'order_client_id', 'product_id', 'qty_item'], 'integer'],
             [['price', 'sum_item'], 'number'],
             [['name'], 'string', 'max' => 255],
