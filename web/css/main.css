@@ -285,6 +285,7 @@ body {
     width: 60%;
     text-align: center;
     border-right: 1px dotted #e5e5e5;
+    overflow: hidden;
 }
 
 .product-detail {
