@@ -116,6 +116,7 @@ class CartController extends AppClientController
             $order_items = new OrderItemsClient();
             $order_items->order_client_id = $order_id;
             $order_items->product_id = $id;
+            $order_items->client_id = Yii::$app->user->identity->id;
             $order_items->name = $item['name'];
             $order_items->price = $item['price'];
             $order_items->qty_item = $item['qty'];
