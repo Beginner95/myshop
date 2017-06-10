@@ -61,6 +61,7 @@ ltAppAsset::register($this);
                                     </ul>
                                 </li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['transaction/index']) ; ?>">Платежы</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <?php if (!Yii::$app->user->isGuest) : ?>
