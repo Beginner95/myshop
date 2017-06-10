@@ -54,7 +54,7 @@ ltAppAsset::register($this);
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['order-client/']); ?>">Заказы</a></li>
                                         <li><a href="">Возвраты</a></li>
-                                        <li><a href="">Оплата</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['payment/index']); ?>">Оплата</a></li>
                                     </ul>
                                 </li>
 
