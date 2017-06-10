@@ -27,19 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function($data) {
-                    if ( $data->status == 0 ) {
-                        return '<span class="text-danger">Не подтвержден</span>';
-                    } elseif ( $data->status == 1 ) {
-                        return '<span class="text-success">Подтвержден</span>';
-                    } else {
-                        return '<span class="text-danger">Откланен</span>';
-                    }
+                    return $data->status == 0 ? '<span class="text-danger">Не подтвержден</span>' : '<span class="text-success">Подтвержден</span>';
                 },
                 'format' => 'html',
             ],
             'payment_method',
             'date_added',
-            // 'date_update',
             [
                 'attribute' => 'user_id',
                 'value' => function($data) {
