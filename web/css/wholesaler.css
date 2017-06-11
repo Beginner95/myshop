@@ -149,4 +149,8 @@ div.required .control-label:before {
     padding-top: 4px;
 }
 
+.table-return .form-group, .table-return label, .table-return .help-block {
+    margin: 0;
+}
+
 
