@@ -46,6 +46,12 @@ class OrderItemsClient extends ActiveRecord
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => '',
+        ];
+    }
 
     /**
      * @return \yii\db\ActiveQuery
