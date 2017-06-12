@@ -133,8 +133,10 @@
             </div>
         </div>
         <div class="row">
+
             <div class="container-fluid">
             <?php if (!empty($products)) : ?>
+
                 <table class="table table-bordered my-table">
                     <tr>
                         <th>#</th>
@@ -144,6 +146,7 @@
                         <th>Цена</th>
                     </tr>
                     <?php foreach ($products as $product) : ?>
+                        <?php if ($product->status == 1) : ?>
                         <?php $mainImg = $product->getImage(); ?>
                         <tr>
                             <td>
@@ -162,6 +165,7 @@
                             <td><?php echo $product->name; ?></td>
                             <td><?php echo number_format($product->price, 2, ',', ' '); ?></td>
                         </tr>
+                            <?php endif; ?>
                     <?php endforeach; ?>
                 </table>
                 <div class="container-fluid"><?php echo \yii\widgets\LinkPager::widget(['pagination' => $pages,]); ?></div>
