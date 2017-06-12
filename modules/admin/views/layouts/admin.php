@@ -60,6 +60,8 @@ ltAppAsset::register($this);
                                         <li><a href="<?php echo \yii\helpers\Url::to(['product/index']); ?>">Список товаров</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['order/index/']); ?>">Заказы</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['order-return/']); ?>">Возвраты</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['transaction/index']) ; ?>">Платежы</a></li>
                             </ul>
