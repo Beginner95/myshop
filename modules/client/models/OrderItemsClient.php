@@ -50,6 +50,9 @@ class OrderItemsClient extends ActiveRecord
     {
         return [
             'id' => '',
+            'description' => '',
+            'qty' => '',
+            'sum' => '',
         ];
     }
 
