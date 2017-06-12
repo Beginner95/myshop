@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'date_added')->textInput() ?>
 
     <?= $form->field($model, 'date_update')->textInput() ?>
@@ -22,10 +20,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sum')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList([ '0' => 'Не подтвержден', '1' => 'Подтвержден',]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Обновить', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

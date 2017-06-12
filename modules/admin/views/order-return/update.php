@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\OrderReturn */
 
-$this->title = 'Update Order Return: ' . $model->id;
+$this->title = 'Обновление возврата № ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Order Returns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
