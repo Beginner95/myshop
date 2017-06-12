@@ -53,7 +53,7 @@ ltAppAsset::register($this);
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">История<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['order-client/']); ?>">Заказы</a></li>
-                                        <li><a href="">Возвраты</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['return/history']); ?>">Возвраты</a></li>
                                         <li><a href="<?php echo \yii\helpers\Url::to(['payment/index']); ?>">Оплата</a></li>
                                     </ul>
                                 </li>
