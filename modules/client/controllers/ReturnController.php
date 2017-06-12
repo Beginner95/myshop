@@ -6,6 +6,7 @@ use app\modules\client\models\OrderItemsClient;
 use app\modules\client\models\OrderItemsReturn;
 use app\modules\client\models\OrderReturn;
 use Yii;
+use yii\data\ActiveDataProvider;
 class ReturnController extends AppClientController
 {
     public function actionIndex()
@@ -14,6 +15,46 @@ class ReturnController extends AppClientController
         $items = OrderItemsClient::find()->where(['client_id' => Yii::$app->user->identity->id])->all();
         return $this->render('index', [
             'items' => $items,
+        ]);
+    }
+    
+    public function actionHistory()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => OrderReturn::find(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'status' => SORT_ASC,
+                ],
+            ],
+        ]);
+
+        return $this->render('history', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionView($id)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => OrderReturn::find(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'status' => SORT_ASC,
+                ],
+            ],
+        ]);
+        $items = OrderItemsReturn::find()->where(['order_return_id' => $id])->all();
+        return $this->render('view', [
+            'items' => $items,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -45,12 +86,12 @@ class ReturnController extends AppClientController
                 $this->saveOrderItemsReturn($items, $model->id, $desc);
             }
         }
+        return $this->redirect(['return/history']);
     }
 
 
     protected function saveOrderItemsReturn($items, $order_id, $desc)
     {
-
         foreach ($items as $id => $item) {
             $order_items = new OrderItemsReturn();
             $order_items->order_return_id = $order_id;
@@ -61,6 +102,7 @@ class ReturnController extends AppClientController
             $order_items->qty_item = $item->qty_item;
             $order_items->sum_item = $item->qty_item * $item->price;
             $order_items->description = $desc['description'][$item->id];
+            $order_items->date_added = $item->date_added;
             $order_items->save();
         }
         if (true === $order_items->save()) {
