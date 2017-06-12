@@ -33,4 +33,13 @@ class OrderReturn extends ActiveRecord
             [['id'], 'integer'],
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'date_added' => 'Дата возврата',
+            'sum' => 'Сумма',
+            'status' => 'Статус',
+        ];
+    }
 }
