@@ -1,6 +1,6 @@
 function getCart(){
     $.ajax({
-        url: '/cart/show',
+        url: '/client/cart/show',
         type: 'GET',
         success: function(res){
             if(!res) alert('Ошибка!');
@@ -21,7 +21,7 @@ function showCart(cart) {
 $('#cart .modal-body').on('click', '.del-item', function () {
     var id = $(this).data('id');
     $.ajax({
-        url: '/cart/del-item',
+        url: '/client/cart/del-item',
         data: {id: id},
         type: 'GET',
         success: function (res) {
@@ -55,7 +55,7 @@ $('.add-to-cart').on('click', function (e) {
     var id = $(this).data('id'),
         qty = $('#qty').val();
     $.ajax({
-        url: '/cart/add',
+        url: '/client/cart/add',
         data: {id: id, qty: qty},
         type: 'GET',
         success: function (res) {

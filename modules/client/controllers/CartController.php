@@ -3,8 +3,8 @@
 namespace app\modules\client\controllers;
 
 use app\modules\client\models\Cart;
-use app\models\Product;
-use app\modules\client\models\Client;
+use app\modules\client\models\Product;
+//use app\modules\client\models\Client;
 use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderClient;
 use app\modules\client\models\OrderItemsClient;
@@ -75,7 +75,7 @@ class CartController extends AppClientController
 
         if ($order->load(Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
-            $order->sum = $session['cart.sum'];
+            $order->sum = $session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100);
             $order->client_id = Yii::$app->user->identity->id;
 
             if ($order->save()) {
@@ -118,9 +118,9 @@ class CartController extends AppClientController
             $order_items->product_id = $id;
             $order_items->client_id = Yii::$app->user->identity->id;
             $order_items->name = $item['name'];
-            $order_items->price = $item['price'];
+            $order_items->price = $item['price'] * ((100 - Yii::$app->user->identity->discount) / 100);
             $order_items->qty_item = $item['qty'];
-            $order_items->sum_item = $item['qty'] * $item['price'];
+            $order_items->sum_item = $item['qty'] * $item['price'] * ((100 - Yii::$app->user->identity->discount) / 100);
             $order_items->save();
         }
     }

@@ -17,8 +17,8 @@
                         <td><?php echo \yii\helpers\Html::img($item['img'], ['alt' => $item['name']]); ?></td>
                         <td><?php echo $item['name']; ?></td>
                         <td style="text-align: center;"><?php echo $item['qty']; ?></td>
-                        <td style="text-align: center;"><?php echo number_format($item['price'], 2, ',', ' '); ?></td>
-                        <td style="text-align: center;"><?php echo number_format($item['qty'] * $item['price'], 2, ',', ' '); ?></td>
+                        <td style="text-align: center;"><?php echo number_format($item['price'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
+                        <td style="text-align: center;"><?php echo number_format($item['qty'] * $item['price'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
                         <td style="text-align: center;"><span data-id="<?php echo $id; ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                     </tr>
                 <?php endforeach; ?>
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">На сумму: </td>
-                    <td style="text-align: center;"><?php echo number_format($session['cart.sum'], 2, ',', ' '); ?></td>
+                    <td style="text-align: center;"><?php echo number_format($session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
                 </tr>
             </tbody>
         </table>

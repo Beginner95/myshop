@@ -29,8 +29,8 @@
                         <td><?php echo \yii\helpers\Html::img($item['img'], ['alt' => $item['name'], 'height' => 50]); ?></td>
                         <td><a href="<?php echo Url::to(['product/view', 'id' => $id])?>"><?php echo $item['name']; ?></a></td>
                         <td style="text-align: center;"><?php echo $item['qty']; ?></td>
-                        <td style="text-align: center;"><?php echo number_format($item['price'], 2, ',', ' '); ?></td>
-                        <td style="text-align: center;"><?php echo number_format($item['qty'] * $item['price'], 2, ',', ' '); ?></td>
+                        <td style="text-align: center;"><?php echo number_format($item['price'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
+                        <td style="text-align: center;"><?php echo number_format($item['qty'] * $item['price'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
                         <td style="text-align: center;">
                             <a href="<?php echo \yii\helpers\Url::to(['/cart/del-item', 'id' => $id])?>" data-id="<?php echo $id; ?>" class="del-item">
                                 <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">На сумму: </td>
-                    <td style="text-align: center;"><?php echo number_format($session['cart.sum'], 2, ',', ' '); ?></td>
+                    <td style="text-align: center;"><?php echo number_format($session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100), 2, ',', ' '); ?></td>
                 </tr>
                 </tbody>
             </table>
