@@ -88,8 +88,12 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $current_password = $model->password;
+        if ($model->load(Yii::$app->request->post())) {
+            if ($current_password != Yii::$app->request->post()['User']['password']) {
+                $model->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post()['User']['password']);
+            }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
