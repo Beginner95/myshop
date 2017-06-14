@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 use app\modules\client\models\OrderClient;
+use app\modules\client\models\Payment;
 
 use Yii;
 
@@ -34,7 +35,7 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
-
+    
     /**
      * @inheritdoc
      */
