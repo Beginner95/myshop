@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\Slider;
 use Yii;
 use yii\data\Pagination;
 use yii\web\HttpException;
@@ -11,8 +12,9 @@ use yii\web\HttpException;
 class CategoryController extends AppController
 {
     public function actionIndex() {
+        $sliders = Slider::find()->asArray()->all();
         $hits = Product::find()->where(['hit' => '1', 'status' => '1'])->limit(8)->all();
-        return $this->render('index', compact('hits'));
+        return $this->render('index', compact('hits', 'sliders'));
     }
 
     public function actionView($id) {
