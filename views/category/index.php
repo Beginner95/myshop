@@ -7,11 +7,15 @@
             <div class="span9 slider">
                 <div class="slider-slides">
                     <?php foreach ($sliders as $slider) : ?>
+
                         <div class="slides">
-                            <img src="/web/img/<?php echo $slider['image']; ?>" alt="">
+                            <?php
+                                $mainImg = $slider->getImage();
+                                echo Html::img($mainImg->getUrl(), ['alt' => $slider->name]);
+                            ?>
                             <div class="overlay">
                                 <h1><?php echo $slider['name']; ?></h1>
-                                <p><?php echo $slider['content']; ?></p>
+                                <?php echo $slider['content']; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

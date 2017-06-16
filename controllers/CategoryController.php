@@ -12,7 +12,7 @@ use yii\web\HttpException;
 class CategoryController extends AppController
 {
     public function actionIndex() {
-        $sliders = Slider::find()->asArray()->all();
+        $sliders = Slider::find()->all();
         $hits = Product::find()->where(['hit' => '1', 'status' => '1'])->limit(8)->all();
         return $this->render('index', compact('hits', 'sliders'));
     }
