@@ -47,6 +47,15 @@ ltAppAsset::register($this);
                             <ul class="nav navbar-nav">
                                 <li><a href="<?php echo \yii\helpers\Url::to(['/admin']); ?>">Главная</a></li>
                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Сайт <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['slider/index']); ?>">Слайдер</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['category/create']); ?>">Условия работы</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['category/create']); ?>">Контакты</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категории <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['category/index']); ?>">Список категории</a></li>
@@ -58,11 +67,12 @@ ltAppAsset::register($this);
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товары <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['product/index']); ?>">Список товаров</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['product/create']); ?>">Добавить товар</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['order/index/']); ?>">Заказы</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['order-return/']); ?>">Возвраты</a></li>
-                                <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['transaction/index']) ; ?>">Платежы</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
