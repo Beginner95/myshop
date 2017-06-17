@@ -9,7 +9,7 @@ ul, li, hr {
     display: block;
 }
 
-.auth_spec {
+.auth_spec a{
     padding: 15px 10px 10px 17px;
     font-weight: bold;
 }
