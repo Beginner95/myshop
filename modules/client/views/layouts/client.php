@@ -60,11 +60,11 @@ ltAppAsset::register($this);
 
                                 <li><a href="<?php echo \yii\helpers\Url::to(['return/index']); ?>">Оформить возврат</a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['payment/create']); ?>">Внести оплату</a></li>
-                                <li><a href="">Сменить пароль</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['profile/password-change']); ?>">Сменить пароль</a></li>
                                 <li><a href="">Скачать прайс</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="auth_spec"><?php echo Yii::$app->user->identity->firstName . ' ' . Yii::$app->user->identity->secondName . ' ' . Yii::$app->user->identity->lastName; ?></li>
+                                <li class="auth_spec"><a href="<?php echo \yii\helpers\Url::to(['profile/index']); ?>"><?php echo Yii::$app->user->identity->firstName . ' ' . Yii::$app->user->identity->secondName . ' ' . Yii::$app->user->identity->lastName; ?></a></li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['/site/logout']); ?>">Выход</a></li>
                             </ul>
                         </div>
