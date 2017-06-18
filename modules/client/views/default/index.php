@@ -52,14 +52,6 @@
 
     <div class="row">
         <div class="col-md-6">
-            <strong>Чего нет в прайсе:</strong>
-            <form action="#" method="post">
-                <input  class="form-control no-in-the-price-list" type="text" name="name-tovar">
-                <input class="form-control no-in-the-price-count" type="text" name="count-tovar">
-                <button class="btn btn-default">Добавить</button>
-            </form>
-
-
             <div id="cart-client">
                 <?php if (!empty($session['cart'])) : ?>
                     <div class="row">
