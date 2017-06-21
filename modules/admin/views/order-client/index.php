@@ -21,7 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_added',
             'date_update',
             'qty',
-            'sum',
+
+            [
+                'attribute' => 'sum',
+                'value' => function ($data) {
+                    return number_format($data->sum, 2, ',', ' ');
+                }
+            ],
             [
                 'attribute' => 'status',
                 'value'     => function($data) {
