@@ -3,6 +3,9 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "product".
@@ -14,6 +17,7 @@ use Yii;
  * @property string $image
  * @property string $price
  * @property string $wholesale_price
+ * @property string $content
  * @property string $status
  * @property string $sale
  * @property string $new
@@ -26,7 +30,7 @@ use Yii;
  * @property OrderItems[] $orderItems
  * @property Category $category
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends ActiveRecord
 {
     public $image;
 
@@ -35,7 +39,15 @@ class Product extends \yii\db\ActiveRecord
         return [
             'image' => [
                 'class' => 'rico\yii2images\behaviors\ImageBehave',
-            ]
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date_added', 'date_update'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date_update'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
