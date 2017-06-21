@@ -68,6 +68,7 @@ ltAppAsset::register($this);
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['product/index']); ?>">Список товаров</a></li>
                                         <li><a href="<?php echo \yii\helpers\Url::to(['product/create']); ?>">Добавить товар</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['import/upload']); ?>">Ипорт товаров</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
