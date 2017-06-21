@@ -23,7 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'format' => 'html',
                 ],
-                'sum',
+                [
+                    'attribute' => 'sum',
+                    'value' => function ($data) {
+                        return number_format($data->sum, 2, ',',' ');
+                    }
+                ],
                 [
                     'attribute' => 'status',
                     'value'     => function($data) {
@@ -52,8 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <td><?php echo $item->name; ?></td>
                     <td><?php echo $item->qty_item; ?></td>
-                    <td><?php echo $item->price; ?></td>
-                    <td><?php echo $item->sum_item; ?></td>
+                    <td><?php echo number_format($item->price, 2, ',', ' '); ?></td>
+                    <td><?php echo number_format($item->sum_item, 2, ',', ' '); ?></td>
                 </tr>
             <?php endforeach; ?>
 

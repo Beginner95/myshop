@@ -23,7 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'format' => 'html',
                 ],
-                'sum',
+                [
+                    'attribute' => 'sum',
+                    'value' => function ($data) {
+                        return number_format($data->sum, 2, ',', ' ');
+                    }
+                ],
                 [
                     'attribute' => 'status',
                     'value'     => function($data) {
