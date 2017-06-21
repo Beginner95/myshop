@@ -8,13 +8,13 @@ use yii\data\ActiveDataProvider;
 
 class PaymentController extends AppClientController
 {
-    public function actionIndex()
+    public function actionHistory()
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Transaction::find()->orderBy('status ASC')->where(['user_id' => Yii::$app->user->identity->id]),
         ]);
 
-        return $this->render('index', [
+        return $this->render('history', [
             'dataProvider' => $dataProvider,
         ]);
     }
