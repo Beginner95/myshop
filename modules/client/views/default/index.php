@@ -38,7 +38,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="msg-left">
-                <p>Ваша отсрочка - 14 дней;  Ваш кредит - 300 у.е.</p>
+                <p>
+                    Ваша отсрочка - <?php echo Yii::$app->user->identity->postponement; ?> дней;
+                    Ваш кредит - <?php echo Yii::$app->user->identity->credit; ?> у.е.
+                </p>
             </div>
         </div>
         <div class="col-md-6">
