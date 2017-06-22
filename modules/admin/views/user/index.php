@@ -29,6 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'email:email',
              'username',
              'discount',
+            'credit',
+            'postponement',
              [
                  'attribute' => 'status',
                  'value'     => function ($data) {

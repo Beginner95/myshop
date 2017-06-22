@@ -43,7 +43,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['firstName', 'secondName', 'lastName', 'email', 'username', 'password'], 'required'],
-            [['discount'], 'number'],
+            [['discount', 'credit', 'postponement'], 'number'],
             [['status'], 'string'],
             [['firstName', 'secondName', 'lastName', 'email'], 'string', 'max' => 45],
             [['address'], 'string', 'max' => 255],
@@ -68,6 +68,8 @@ class User extends \yii\db\ActiveRecord
             'username' => 'Логин',
             'password' => 'Пароль',
             'discount' => 'Скидка %',
+            'credit' => 'Кредит',
+            'postponement' => 'Отсрочка',
             'status' => 'Статус',
 //            'authKey' => 'Auth Key',
             'phone' => 'Телефон',

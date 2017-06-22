@@ -28,6 +28,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'discount')->textInput() ?>
 
+    <?= $form->field($model, 'credit')->textInput() ?>
+
+    <?= $form->field($model, 'postponement')->textInput() ?>
+
     <?= $form->field($model, 'status')->dropDownList([ '0' => 'Заблокированный', '1' => 'Активный', ]) ?>
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
