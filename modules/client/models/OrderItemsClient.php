@@ -11,6 +11,7 @@ use Yii;
  * Class OrderItemsClient
  * @package app\modules\client\models
  * @property string $name
+ * @property string $status
  */
 class OrderItemsClient extends ActiveRecord
 {
@@ -53,6 +54,7 @@ class OrderItemsClient extends ActiveRecord
             'description' => '',
             'qty' => '',
             'sum' => '',
+            'status' => '',
         ];
     }
 
