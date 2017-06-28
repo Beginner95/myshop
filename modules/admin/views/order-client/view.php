@@ -61,15 +61,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th>Кол-во</th>
                 <th>Цена</th>
                 <th>Сумма</th>
+                <th>Статус</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach($items as $item):?>
-                <tr>
+                <tr
+                    <?php
+                        if ($item['status'] == 1) {
+                            echo 'style="background: #adebad;"';
+                        } else {
+                            echo 'style="background: #ff9999;"';
+                        }
+                    ?>
+                >
                     <td><a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $item->product_id])?>"><?= $item['name']?></a></td>
                     <td><?= $item['qty_item']?></td>
                     <td><?= number_format($item['price'], 2, ',', ' ') ?></td>
                     <td><?= number_format($item['sum_item'], 2, ',', ' ') ?></td>
+                    <td>
+                        <?php
+                            if ($item['status'] == 1) {
+                                echo 'Есть';
+                            } else {
+                                echo 'Нет';
+                            }
+                        ?>
+                    </td>
                 </tr>
             <?php endforeach?>
             </tbody>
