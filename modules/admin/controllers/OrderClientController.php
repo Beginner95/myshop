@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
 use app\modules\client\models\Delivery;
+use app\modules\client\models\OrderItemsClient;
 use Yii;
 use app\modules\admin\models\OrderClient;
 use yii\data\ActiveDataProvider;
@@ -91,13 +92,18 @@ class OrderClientController extends AppController
      */
     public function actionUpdate($id)
     {
+        $items = OrderItemsClient::find()->where(['order_client_id' => $id])->all();
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (true === $model->save()) {
+                $this->updateOrderItemsClient($items);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('update', [
                 'model' => $model,
+                'items' => $items,
             ]);
         }
     }
@@ -128,6 +134,15 @@ class OrderClientController extends AppController
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function updateOrderItemsClient($items)
+    {
+        foreach ($items as $item) {
+            $order_items = OrderItemsClient::findOne($item->id);
+            $order_items->status = Yii::$app->request->post()['OrderItemsClient']['status'][$item->id];
+            $order_items->save();
         }
     }
 }
