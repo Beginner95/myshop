@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach($items as $item):?>
                 <tr
                     <?php
-                        if ($item['status'] == 1) {
+                        if ($item['availability'] == 1) {
                             echo 'style="background: #adebad;"';
                         } else {
                             echo 'style="background: #ff9999;"';
@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= number_format($item['sum_item'], 2, ',', ' ') ?></td>
                     <td>
                         <?php
-                            if ($item['status'] == 1) {
+                            if ($item['availability'] == 1) {
                                 echo 'Есть';
                             } else {
                                 echo 'Нет';

@@ -50,14 +50,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Кол-во</th>
                     <th>Цена</th>
                     <th>Сумма</th>
-                    <th>Статус</th>
+                    <th>Наличие</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($items as $item) : ?>
                 <tr
                     <?php
-                        if ($item['status'] == 1) {
+                        if ($item['availability'] == 1) {
                             echo 'style="background: #adebad;"';
                         } else {
                             echo 'style="background: #ff9999;"';
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?php echo number_format($item->sum_item, 2, ',', ' '); ?></td>
                     <td>
                         <?php
-                            if ($item->status == 1) {
+                            if ($item->availability == 1) {
                                 echo 'Есть';
                             } else {
                                 echo 'Нет';

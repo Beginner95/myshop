@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
             <th>Количество</th>
             <th>Цена</th>
             <th>Сумма</th>
-            <th>Стутаус</th>
+            <th>Наличие</th>
         </tr>
     <?php $i = 1; foreach ($items as $item) : ?>
         <tr>
@@ -49,7 +49,17 @@ use yii\widgets\ActiveForm;
             <td><?php echo $item->qty_item; ?></td>
             <td><?php echo number_format($item->price, 2, ',', ' '); ?></td>
             <td><?php echo number_format($item->sum_item, 2, ',', ' '); ?></td>
-            <td><?php echo $form->field($item, 'status[' . $item->id . ']')->dropDownList([ '1' => 'Есть', '0' => 'Нет', ]) ?></td>
+            <td>
+                <?php
+
+                    echo $form->field($item, 'availability[' . $item->id . ']')
+                        ->dropDownList([
+                            '1' => 'Есть',
+                            '0' => 'Нет',
+                        ]
+                        );
+                ?>
+            </td>
         </tr>
     <?php endforeach; ?>
     </table>

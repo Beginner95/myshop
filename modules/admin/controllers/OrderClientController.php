@@ -141,7 +141,7 @@ class OrderClientController extends AppController
     {
         foreach ($items as $item) {
             $order_items = OrderItemsClient::findOne($item->id);
-            $order_items->status = Yii::$app->request->post()['OrderItemsClient']['status'][$item->id];
+            $order_items->availability = Yii::$app->request->post()['OrderItemsClient']['availability'][$item->id];
             $order_items->save();
         }
     }
