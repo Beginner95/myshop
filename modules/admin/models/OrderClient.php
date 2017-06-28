@@ -4,6 +4,7 @@ namespace app\modules\admin\models;
 
 use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderItemsClient;
+use app\modules\client\models\User;
 use Yii;
 
 /**
@@ -54,7 +55,7 @@ class OrderClient extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '№ заказа',
+            'client_id' => 'Клиент',
             'date_added' => 'Дата заказа',
             'date_update' => 'Дата изменения',
             'qty' => 'Кол-во',
@@ -80,5 +81,10 @@ class OrderClient extends \yii\db\ActiveRecord
     public function getDelivery()
     {
         return $this->hasOne(Delivery::className(), ['id' => 'delivery_id']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'client_id']);
     }
 }

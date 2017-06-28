@@ -17,7 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [
+                'attribute' => 'client_id',
+                'value'     => function($data) {
+                    return '<a href="' . \yii\helpers\Url::to(['order-client/view', 'id' => $data->id]) . '">' . $data->user->username . '</a>';
+                },
+                'format'    => 'html',
+            ],
             'date_added',
             'date_update',
             'qty',
@@ -41,7 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'phone',
             // 'address',
 
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 </div>

@@ -612,16 +612,16 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.24",
+            "version": "2.1.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "085b4f8b470335f89ca0dce0a8d31243e46e6b7d"
+                "reference": "15fd80e6af9fe51407db2e6baf7a6036de6a11df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/085b4f8b470335f89ca0dce0a8d31243e46e6b7d",
-                "reference": "085b4f8b470335f89ca0dce0a8d31243e46e6b7d",
+                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/15fd80e6af9fe51407db2e6baf7a6036de6a11df",
+                "reference": "15fd80e6af9fe51407db2e6baf7a6036de6a11df",
                 "shasum": ""
             },
             "require": {
@@ -666,7 +666,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-05-19T06:16:48+00:00"
+            "time": "2017-06-23T06:23:08+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2489,16 +2489,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "02b6b2c7aefe2cdb1185b8dbf8718b0bcedf3ab3"
+                "reference": "74776f8dbc081cab9287c2a601c0c1d842568744"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/02b6b2c7aefe2cdb1185b8dbf8718b0bcedf3ab3",
-                "reference": "02b6b2c7aefe2cdb1185b8dbf8718b0bcedf3ab3",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/74776f8dbc081cab9287c2a601c0c1d842568744",
+                "reference": "74776f8dbc081cab9287c2a601c0c1d842568744",
                 "shasum": ""
             },
             "require": {
@@ -2535,7 +2535,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2017-05-18T10:10:00+00:00"
+            "time": "2017-06-20T16:25:05+00:00"
         },
         {
             "name": "sebastian/exporter",
