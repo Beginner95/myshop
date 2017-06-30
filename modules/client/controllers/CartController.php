@@ -4,11 +4,9 @@ namespace app\modules\client\controllers;
 
 use app\modules\client\models\Cart;
 use app\modules\client\models\Product;
-//use app\modules\client\models\Client;
 use app\modules\client\models\Delivery;
 use app\modules\client\models\OrderClient;
 use app\modules\client\models\OrderItemsClient;
-use app\modules\client\models\Payment;
 use Yii;
 
 class CartController extends AppClientController
@@ -72,14 +70,12 @@ class CartController extends AppClientController
         $this->setMeta('Корзина');
         $order = new OrderClient();
 
-
         if ($order->load(Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100);
             $order->client_id = Yii::$app->user->identity->id;
 
             if ($order->save()) {
-                $this->setBalance($order->sum, $order->id);
                 $this->saveOrderItemsClient($session['cart'], $order->id);
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами.');
 
@@ -123,25 +119,5 @@ class CartController extends AppClientController
             $order_items->sum_item = $item['qty'] * $item['price'] * ((100 - Yii::$app->user->identity->discount) / 100);
             $order_items->save();
         }
-    }
-    
-    protected function setBalance($sum, $order_id)
-    {
-        $payment = new Payment();
-        $payment->client_id = Yii::$app->user->identity->id;
-        $payment->order_client_id = $order_id;
-        $payment->amount = $this->getBalance()['amount'] - $sum;
-        $payment->description = 'Оплата заказа ' . $order_id;
-        $payment->save();
-    }
-
-    protected function getBalance()
-    {
-        return Payment::find()
-            ->select(['amount'])
-            ->where(['client_id' => Yii::$app->user->identity->id])
-            ->asArray()
-            ->orderBy('id DESC')
-            ->one();
     }
 }
