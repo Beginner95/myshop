@@ -28,7 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            [
+                'attribute' => 'identificationName',
+                'value' => !$model->identificationName ? 'Не задано' : $model->identificationName,
+            ],
+            'companyName',
             'firstName',
             'secondName',
             'lastName',
@@ -36,9 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'username',
             'discount',
-            'credit',
-            'postponement',
-            'status',
+//            'credit',
+//            'postponement',
+            [
+                'attribute' => 'status',
+                'value' => $model->status ? 'Активный' : 'Заблокированный',
+            ],
             'phone',
         ],
     ]) ?>
