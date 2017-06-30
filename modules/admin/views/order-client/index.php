@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'client_id',
                 'value'     => function($data) {
-                    return '<a href="' . \yii\helpers\Url::to(['order-client/view', 'id' => $data->id]) . '">' . $data->user->username . '</a>';
+                    return '<a href="' . \yii\helpers\Url::to(['order-client/view', 'id' => $data->id]) . '">' . $data->user->identificationName . '</a>';
                 },
                 'format'    => 'html',
             ],
