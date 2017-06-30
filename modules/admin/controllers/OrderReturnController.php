@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\modules\admin\models\OrderReturn;
+use app\modules\client\models\Payment;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -83,8 +84,12 @@ class OrderReturnController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if (true === $model->save()) {
+                if (1 == $model->status) {
+                    $this->setBalance($model->sum, $id);
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -120,5 +125,25 @@ class OrderReturnController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    protected function setBalance($sum, $order_id)
+    {
+        $payment = new Payment();
+        $payment->client_id = Yii::$app->request->post()['OrderReturn']['user_id'];
+        $payment->order_client_id = $order_id;
+        $payment->amount = $this->getBalance()['amount'] + $sum;
+        $payment->description = 'Оплата заказа ' . $order_id;
+        $payment->save();
+    }
+
+    protected function getBalance()
+    {
+        return Payment::find()
+            ->select(['amount'])
+            ->where(['client_id' => Yii::$app->request->post()['OrderReturn']['user_id']])
+            ->asArray()
+            ->orderBy('id DESC')
+            ->one();
     }
 }
