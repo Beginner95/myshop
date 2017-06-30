@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList([ '0' => 'Не подтвержден', '1' => 'Подтвержден',]) ?>
 
-    <?= $form->field($model, 'user_id')->hiddenInput() ?>
+    <?= $form->field($model, 'user_id')->hiddenInput()->label('') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Обновить', ['class' => 'btn btn-primary']) ?>
