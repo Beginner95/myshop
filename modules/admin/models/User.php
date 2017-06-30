@@ -43,10 +43,10 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['firstName', 'secondName', 'lastName', 'email', 'username', 'password'], 'required'],
-            [['discount', 'credit', 'postponement'], 'number'],
+            [['discount'], 'number'],
             [['status'], 'string'],
             [['firstName', 'secondName', 'lastName', 'email'], 'string', 'max' => 45],
-            [['address'], 'string', 'max' => 255],
+            [['address', 'companyName', 'identificationName'], 'string', 'max' => 255],
             [['username', 'password'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 15],
             [['email'], 'unique'],
@@ -59,7 +59,9 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+//            'id' => 'ID',
+            'identificationName' => 'Ид имя',
+            'companyName' => 'Компания',
             'firstName' => 'Фамилия',
             'secondName' => 'Имя',
             'lastName' => 'Отчество',
@@ -68,8 +70,8 @@ class User extends \yii\db\ActiveRecord
             'username' => 'Логин',
             'password' => 'Пароль',
             'discount' => 'Скидка %',
-            'credit' => 'Кредит',
-            'postponement' => 'Отсрочка',
+//            'credit' => 'Кредит',
+//            'postponement' => 'Отсрочка',
             'status' => 'Статус',
 //            'authKey' => 'Auth Key',
             'phone' => 'Телефон',
