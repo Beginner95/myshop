@@ -21,26 +21,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
+            [
+                'attribute' => 'identificationName',
+                'value' => function ($data) {
+                    return $data->identificationName ? '<a href="' . \yii\helpers\Url::to(['user/view', 'id' => $data->id]) . '">' . $data->identificationName . '</a>' : 'Не задано';
+                },
+                'format' => 'html',
+            ],
+            'companyName',
             'firstName',
             'secondName',
             'lastName',
             'address',
-             'email:email',
-             'username',
-             'discount',
-            'credit',
-            'postponement',
-             [
-                 'attribute' => 'status',
-                 'value'     => function ($data) {
-                     return $data->status ? '<span class="text-success">Активный</span>' : '<span class="text-danger">Заблокирован</span>';
-                 },
-                 'format'    => 'html',
-             ],
-             'phone',
+            'email:email',
+            'username',
+            'discount',
+//            'credit',
+//            'postponement',
+            [
+                'attribute' => 'status',
+                'value'     => function ($data) {
+                    return $data->status ? '<span class="text-success">Активный</span>' : '<span class="text-danger">Заблокирован</span>';
+                },
+                'format'    => 'html',
+            ],
+            'phone',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 </div>
