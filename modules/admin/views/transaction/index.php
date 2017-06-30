@@ -17,7 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            [
+                'attribute' => 'user_id',
+                'value' => function($data) {
+                    return '<a href="' . \yii\helpers\Url::to(['transaction/view', 'id' => $data->id]) . '">' . $data->user->identificationName . '</a>';
+                },
+                'format' => 'html',
+            ],
             [
                 'attribute' => 'amount',
                 'value' => function ($data) {
@@ -33,14 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'payment_method',
             'date_added',
-            [
-                'attribute' => 'user_id',
-                'value' => function($data) {
-                    return $data->user->firstName . ' ' . $data->user->secondName . ' ' . $data->user->lastName;
-                }
-            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 </div>
