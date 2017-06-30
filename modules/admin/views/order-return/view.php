@@ -36,7 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_added',
             'date_update',
             'qty',
-            'sum',
+            [
+                'attribute' => 'sum',
+                'value' => number_format($model->sum, 2, ',', ' '),
+            ],
             [
                 'attribute' => 'status',
                 'value' =>  $model->status ? '<span class="text-success">Подтвержден</span>' : '<span class="text-danger">Не подтвержден</span>',
@@ -64,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $item->product_id])?>"><?= $item['name']?></a></td>
                         <td><?= $item['qty_item']?></td>
                         <td><?= $item['price']?></td>
-                        <td><?= $item['sum_item']?></td>
+                        <td><?= number_format($item['sum_item'], 2, ',', ' ')?></td>
                         <td><?= $item['date_added']?></td>
                         <td><?= $item['description']?></td>
                     </tr>
