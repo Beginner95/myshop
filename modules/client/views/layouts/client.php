@@ -73,7 +73,15 @@ ltAppAsset::register($this);
             </div>
         </div>
 
-        <?php echo $content; ?>
+        <?php if (Yii::$app->user->identity->status == 1) : ?>
+            <?php echo $content; ?>
+        <?php else: ?>
+            <div class="container">
+                <div class="row">
+                    <div class="alert alert-warning" role="alert">Ваша учетная запись заблокирована или находится в стадии активации администратором</div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <?php
         \yii\bootstrap\Modal::begin([
