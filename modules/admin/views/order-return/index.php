@@ -18,12 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             [
                 'attribute' => 'user_id',
-                'value' => function($data) {
-                    return $data->user->firstName . ' ' . $data->user->secondName . ' ' . $data->user->lastName;
-                }
+                'value'     => function($data) {
+                    return '<a href="' . \yii\helpers\Url::to(['order-return/view', 'id' => $data->id]) . '">' . $data->user->identificationName . '</a>';
+                },
+                'format'    => 'html',
             ],
             'date_added',
             'qty',
@@ -42,7 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 </div>
