@@ -12,6 +12,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'identificationName')->textInput(['maxlength' => true])->label('Идентификационное имя') ?>
+
+    <?= $form->field($model, 'companyName')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'firstName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'secondName')->textInput(['maxlength' => true]) ?>
@@ -28,9 +32,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'discount')->textInput() ?>
 
-    <?= $form->field($model, 'credit')->textInput() ?>
-
-    <?= $form->field($model, 'postponement')->textInput() ?>
+<!--    --><?//= $form->field($model, 'credit')->textInput() ?>
+<!---->
+<!--    --><?//= $form->field($model, 'postponement')->textInput() ?>
 
     <?= $form->field($model, 'status')->dropDownList([ '0' => 'Заблокированный', '1' => 'Активный', ]) ?>
 
