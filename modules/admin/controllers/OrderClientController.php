@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
 use app\modules\client\models\Delivery;
+use app\modules\client\models\Payment;
 use app\modules\client\models\OrderItemsClient;
 use Yii;
 use app\modules\admin\models\OrderClient;
@@ -94,13 +95,16 @@ class OrderClientController extends AppController
     {
         $items = OrderItemsClient::find()->where(['order_client_id' => $id])->all();
         $model = $this->findModel($id);
+//        var_dump(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post())) {
+            $model->sum = $this->updateOrderItemsClient($items);
             if (true === $model->save()) {
-                $this->updateOrderItemsClient($items);
+                if (1 == $model->status) {
+                    $this->setBalance($model->sum, $id);
+                }
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-
             return $this->render('update', [
                 'model' => $model,
                 'items' => $items,
@@ -139,10 +143,35 @@ class OrderClientController extends AppController
 
     protected function updateOrderItemsClient($items)
     {
+        $sum = 0;
         foreach ($items as $item) {
             $order_items = OrderItemsClient::findOne($item->id);
             $order_items->availability = Yii::$app->request->post()['OrderItemsClient']['availability'][$item->id];
+            if ($order_items->availability != 0) {
+                $sum += Yii::$app->request->post()['OrderItemsClient']['sum_item'][$item->id];
+            }
             $order_items->save();
         }
+        return $sum;
+    }
+
+    protected function setBalance($sum, $order_id)
+    {
+        $payment = new Payment();
+        $payment->client_id = Yii::$app->request->post()['OrderClient']['client_id'];
+        $payment->order_client_id = $order_id;
+        $payment->amount = $this->getBalance()['amount'] - $sum;
+        $payment->description = 'Оплата заказа ' . $order_id;
+        $payment->save();
+    }
+
+    protected function getBalance()
+    {
+        return Payment::find()
+            ->select(['amount'])
+            ->where(['client_id' => Yii::$app->request->post()['OrderClient']['client_id']])
+            ->asArray()
+            ->orderBy('id DESC')
+            ->one();
     }
 }

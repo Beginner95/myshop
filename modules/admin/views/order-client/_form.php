@@ -32,6 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'client_id')->hiddenInput() ?>
     <h3>Товары в заказе</h3>
     <table class="table table-responsive">
         <tr>
@@ -51,7 +52,7 @@ use yii\widgets\ActiveForm;
             <td><?php echo number_format($item->sum_item, 2, ',', ' '); ?></td>
             <td>
                 <?php
-
+                    echo $form->field($item, 'sum_item[' . $item->id . ']')->hiddenInput(['value' => $item->sum_item]);
                     echo $form->field($item, 'availability[' . $item->id . ']')
                         ->dropDownList([
                             '1' => 'Есть',
