@@ -48,8 +48,8 @@ $this->title = 'Список возвращаемых товаров';
                         <td>
                             <?php
                                 $foo += $item->qty_item;
+                                echo $form->field($item, 'qty_item[' . $item->id . ']')->textInput(['type'=>'number', 'value' => $item->qty_item])->label('');
                                 echo $form->field($item, 'qty')->hiddenInput(['value' => $foo]);
-                                echo $item->qty_item;
 
                             ?>
                         </td>
@@ -58,7 +58,6 @@ $this->title = 'Список возвращаемых товаров';
                                 $sum += $item->price * $item->qty_item;
                                 echo $form->field($item, 'sum')->hiddenInput(['value' => $sum]);
                                 echo number_format($item->price * $item->qty_item, 2, ',', ' ');
-
                             ?>
                         </td>
                         <td><?php echo $form->field($item, 'description[' . $item->id . ']')->textarea(['size'=>10, 'required' => 'required']);?></td>
@@ -71,9 +70,10 @@ $this->title = 'Список возвращаемых товаров';
                 <td></td>
             </tr>
             <tr>
-                <td colspan="6"><?php echo Html::submitButton('Оформить возврат', ['class' => 'btn btn-default']); ?></td>
+                <td colspan="6">
+                    <?php echo Html::submitButton('Оформить возврат', ['class' => 'btn btn-default']); ?>
+                </td>
             </tr>
-
             <?php $form = ActiveForm::end(); ?>
         </table>
         <?php endif; ?>
