@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">
 
-    <h1><a href="<?php echo \yii\helpers\Url::to(['order/index']); ?>">Заказы с сайта</a> | <?= Html::encode($this->title) ?></h1>
+    <h1><a href="<?php echo \yii\helpers\Url::to(['order/index']); ?>">Заказы с сайта</a> <?php echo \app\components\NotificationWidget::widget(['notice' => 'notice_order']); ?> | <?= Html::encode($this->title) ?></h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'rowOptions' => function ($model, $key, $index, $grid)

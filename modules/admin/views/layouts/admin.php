@@ -71,10 +71,14 @@ ltAppAsset::register($this);
                                         <li><a href="<?php echo \yii\helpers\Url::to(['import/upload']); ?>">Ипорт товаров</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов</a></li>
-                                <li><a href="<?php echo \yii\helpers\Url::to(['order/index/']); ?>">Заказы</a></li>
-                                <li><a href="<?php echo \yii\helpers\Url::to(['order-return/']); ?>">Возвраты</a></li>
-                                <li><a href="<?php echo \yii\helpers\Url::to(['transaction/index']) ; ?>">Платежы</a></li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['user/index']); ?>">Списко клиентов  <?php echo \app\components\NotificationWidget::widget(['notice' => 'notice_user']); ?></a></li>
+                                <li>
+                                    <a href="<?php echo \yii\helpers\Url::to(['order/index/']); ?>">Заказы <?php echo \app\components\NotificationWidget::widget(['notice' => 'notice_orders']); ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo \yii\helpers\Url::to(['order-return/']); ?>">Возвраты <?php echo \app\components\NotificationWidget::widget(['notice' => 'notice_return']); ?></a>
+                                </li>
+                                <li><a href="<?php echo \yii\helpers\Url::to(['transaction/index']) ; ?>">Платежы <?php echo \app\components\NotificationWidget::widget(['notice' => 'notice_payment']); ?></a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <?php if (!Yii::$app->user->isGuest) : ?>
