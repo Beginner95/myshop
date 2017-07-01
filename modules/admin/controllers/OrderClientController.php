@@ -3,7 +3,6 @@
 namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
-use app\modules\client\models\Delivery;
 use app\modules\client\models\Payment;
 use app\modules\client\models\OrderItemsClient;
 use Yii;
@@ -111,7 +110,6 @@ class OrderClientController extends AppController
     {
         $items = OrderItemsClient::find()->where(['order_client_id' => $id])->all();
         $model = $this->findModel($id);
-//        var_dump(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post())) {
             $model->sum = $this->updateOrderItemsClient($items);
             if (true === $model->save()) {
