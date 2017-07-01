@@ -36,6 +36,37 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return static::findOne(['username' => $username]);
     }
 
+    public function rules()
+    {
+        return [
+            [['firstName', 'secondName', 'lastName', 'username', 'password'], 'required'],
+            [['firstName', 'secondName', 'lastName', 'email'], 'string', 'max' => 45],
+            [['address'], 'string', 'max' => 255],
+            [['username', 'password'], 'string', 'max' => 100],
+            [['phone'], 'string', 'max' => 15],
+            ['email', 'email'],
+            [['email'], 'unique', 'targetClass' => 'app\models\User'],
+            [['username'], 'unique',  'targetClass' => 'app\models\User']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'firstName' => 'Фамилия',
+            'secondName' => 'Имя',
+            'lastName' => 'Отчество',
+            'address' => 'Адрес',
+            'email' => 'E-mail',
+            'username' => 'Логин',
+            'password' => 'Пароль',
+            'phone' => 'Телефон',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
