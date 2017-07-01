@@ -129,7 +129,7 @@ ltAppAsset::register($this);
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo \yii\helpers\Url::to(['/client/default']); ?>">Войти в личный кабинет</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#">Запрос на регистрацию</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['site/registration']); ?>">Запрос на регистрацию</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
