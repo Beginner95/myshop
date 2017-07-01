@@ -53,7 +53,7 @@ function clearCart() {
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault(); //Отключаем переход по ссылке
     var id = $(this).data('id'),
-        qty = $('#qty').val();
+        qty = $('#qty' + id).val();
     $.ajax({
         url: '/client/cart/add',
         data: {id: id, qty: qty},

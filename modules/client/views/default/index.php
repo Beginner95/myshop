@@ -150,7 +150,7 @@
                                 </a>
                             </td>
                             <td>
-                                <input type="number" value="1" class="form-control" id="qty">
+                                <input type="number" value="1" class="form-control" id="qty<?php echo $product->id; ?>">
                             </td>
                             <td>
                                 <a href="<?php echo $mainImg->getUrl(); ?>" class="img-big">
