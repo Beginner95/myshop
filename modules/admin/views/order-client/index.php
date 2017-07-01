@@ -14,6 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><a href="<?php echo \yii\helpers\Url::to(['order/index']); ?>">Заказы с сайта</a> | <?= Html::encode($this->title) ?></h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'rowOptions' => function ($model, $key, $index, $grid)
+        {
+            if($model->status == 0) {
+                return ['style' => 'background:#ff9999;'];
+            } else {
+                return ['style' => 'background:#adebad;'];
+            }
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
