@@ -30,14 +30,12 @@ class NotificationWidget extends Widget
     {
         if ($this->notice == 'notice_order') {
             $this->data = OrderClient::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
-            $order = Order::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
             $this->data = count($this->data);
             echo $this->render('notice_order', ['notice' => $this->data]);
         }
 
         if ($this->notice == 'notice_order_client') {
             $this->data = OrderClient::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
-            $order = Order::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
             $this->data = count($this->data);
             echo $this->render('notice_order_client', ['notice' => $this->data]);
         }
