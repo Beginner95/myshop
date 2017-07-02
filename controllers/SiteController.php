@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
+
 
 class SiteController extends Controller
 {
@@ -121,5 +123,34 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionRegistration()
+    {
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            if (true === $model->save()) {
+                Yii::$app->session->setFlash('success', 'Вы успешно отправили запрос на регистрацию, после активации учетной записи вы сможете зайти в личный кабинет!');
+                
+                Yii::$app->mailer->compose('registration', ['model' => $model])
+                    ->setFrom(['fetp95@mail.ru' => 'MyShop'])
+                    ->setTo($model->email)
+                    ->setSubject('Запрос на регистрацию')
+                    ->send();
+
+                Yii::$app->mailer->compose('notice_registration', ['model' => $model])
+                    ->setFrom(['fetp95@mail.ru' => 'MyShop'])
+                    ->setTo(Yii::$app->params['adminEmail'])
+                    ->setSubject('Новый запрос на регистрацию')
+                    ->send();
+                
+                return $this->redirect(['client/default']);
+            }
+        }
+        return $this->render('registration', [
+            'model' => $model,
+        ]);
+
     }
 }
