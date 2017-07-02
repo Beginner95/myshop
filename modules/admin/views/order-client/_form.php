@@ -53,12 +53,21 @@ use yii\widgets\ActiveForm;
             <td>
                 <?php
                     echo $form->field($item, 'sum_item[' . $item->id . ']')->hiddenInput(['value' => $item->sum_item])->label('');
-                    echo $form->field($item, 'availability[' . $item->id . ']')
-                        ->dropDownList([
+                    echo $form->field($item, 'availability')
+                        ->radioList([
                             '1' => 'Есть',
                             '0' => 'Нет',
-                        ]
-                        );
+                        ], [
+                            'id' => 'blog_type',
+                            'class' => 'btn-group',
+                            'name' => 'availability[' . $item->id . ']',
+                            'data-toggle' => 'buttons',
+                            'unselect' => $item->availability,
+                            'item' => function ($index, $label, $name, $checked, $value) {
+                                return '<label class="btn btn-primary' . ($checked ? ' active' : '') . '">' .
+                                Html::radio($name, $checked, ['value' => $value, 'class' => 'project-status-btn']) . $label . '</label>';
+                            },
+                        ]);
                 ?>
             </td>
         </tr>
