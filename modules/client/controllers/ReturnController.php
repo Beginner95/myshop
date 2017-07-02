@@ -12,7 +12,7 @@ class ReturnController extends AppClientController
 {
     public function actionIndex()
     {
-        $items = OrderItemsClient::find()->where(['client_id' => Yii::$app->user->identity->id])->all();
+        $items = OrderItemsClient::find()->where(['client_id' => Yii::$app->user->identity->getId()])->all();
         return $this->render('index', [
             'items' => $items,
         ]);
@@ -21,7 +21,7 @@ class ReturnController extends AppClientController
     public function actionHistory()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderReturn::find(),
+            'query' => OrderReturn::find()->where(['user_id' => Yii::$app->user->identity->getId()]),
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -41,7 +41,7 @@ class ReturnController extends AppClientController
     public function actionView($id)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderReturn::find(),
+            'query' => OrderReturn::find()->where(['user_id' => Yii::$app->user->identity->getId()]),
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -51,7 +51,7 @@ class ReturnController extends AppClientController
                 ],
             ],
         ]);
-        $items = OrderItemsReturn::find()->where(['order_return_id' => $id])->all();
+        $items = OrderItemsReturn::find()->where(['order_return_id' => $id])->andWhere(['user_id' => Yii::$app->user->identity->getId()])->all();
         return $this->render('view', [
             'items' => $items,
             'dataProvider' => $dataProvider,
@@ -82,7 +82,7 @@ class ReturnController extends AppClientController
                 $model->sum += Yii::$app->request->post()['OrderItemsClient']['qty_item'][$item->id] * $item->price;
             }
             $model->qty = array_sum(Yii::$app->request->post()['OrderItemsClient']['qty_item']);
-            $model->user_id = Yii::$app->user->identity->id;
+            $model->user_id = Yii::$app->user->identity->getId();
             if (true === $model->save()) {
                 $this->saveOrderItemsReturn($items, $model->id, $desc);
             }
@@ -97,7 +97,7 @@ class ReturnController extends AppClientController
             $order_items = new OrderItemsReturn();
             $order_items->order_return_id = $order_id;
             $order_items->product_id = $item->product_id;
-            $order_items->user_id = Yii::$app->user->identity->id;
+            $order_items->user_id = Yii::$app->user->identity->getId();
             $order_items->name = $item->name;
             $order_items->price = (float)$item->price;
             $order_items->qty_item = Yii::$app->request->post()['OrderItemsClient']['qty_item'][$item->id];
