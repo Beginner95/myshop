@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'client_id')->hiddenInput() ?>
+    <?= $form->field($model, 'client_id')->hiddenInput()->label('') ?>
     <h3>Товары в заказе</h3>
     <table class="table table-responsive">
         <tr>
