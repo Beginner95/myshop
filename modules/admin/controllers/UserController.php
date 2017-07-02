@@ -57,6 +57,22 @@ class UserController extends Controller
     }
 
     /**
+     * Finds the User model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return User the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -93,7 +109,21 @@ class UserController extends Controller
             if ($current_password != Yii::$app->request->post()['User']['password']) {
                 $model->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post()['User']['password']);
             }
-            $model->save();
+            if (true === $model->save()) {
+                if (0 == $model->status) {
+                    Yii::$app->mailer->compose('registration_answer', ['model' => $model])
+                        ->setFrom(['fetp95@mail.ru' => 'MyShop'])
+                        ->setTo($model->email)
+                        ->setSubject('Ваш аккаунт заблокирован!')
+                        ->send();
+                } else {
+                    Yii::$app->mailer->compose('registration_answer', ['model' => $model])
+                        ->setFrom(['fetp95@mail.ru' => 'MyShop'])
+                        ->setTo($model->email)
+                        ->setSubject('Ваш аккаунт активирован!')
+                        ->send();
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -113,21 +143,5 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the User model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }
