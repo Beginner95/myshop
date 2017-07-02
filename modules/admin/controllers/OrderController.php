@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
+use app\modules\admin\models\OrderItems;
 use Yii;
 use app\modules\admin\models\Order;
 use yii\data\ActiveDataProvider;
@@ -65,6 +66,22 @@ class OrderController extends AppController
     }
 
     /**
+     * Finds the Order model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Order the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Order::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -109,24 +126,9 @@ class OrderController extends AppController
      */
     public function actionDelete($id)
     {
+        OrderItems::deleteAll(['order_id' => $id]);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Order model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Order the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Order::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }
