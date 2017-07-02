@@ -34,8 +34,9 @@ class SiteSettings extends \yii\db\ActiveRecord
     {
         return [
             [['usd', 'rub'], 'number'],
-            [['logotip', 'phone', 'email', 'slogan'], 'string', 'max' => 45],
+            [['logotip', 'phone', 'email'], 'string', 'max' => 45],
             [['name_company', 'address'], 'string', 'max' => 200],
+            [['slogan'], 'string', 'max' => 255],
         ];
     }
 
