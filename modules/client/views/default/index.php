@@ -27,7 +27,7 @@
                     <p>Введите нужный для поиска товар</p>
                 </div>
                 <div class="row-two-right">
-                    <p>1 у.е. = 1.95</p>
+                    <p><?php echo \app\components\SettingsWidget::widget(['position' => 'usd']); ?> у.е. = <?php echo \app\components\SettingsWidget::widget(['position' => 'rub']); ?> </p>
                 </div>
             </div>
         </div>
@@ -38,10 +38,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="msg-left">
-                <p>
-                    Ваша отсрочка - <?php echo Yii::$app->user->identity->postponement; ?> дней;
-                    Ваш кредит - <?php echo Yii::$app->user->identity->credit; ?> у.е.
-                </p>
+<!--                <p>-->
+<!--                    Ваша отсрочка - --><?php //echo Yii::$app->user->identity->postponement; ?><!-- дней;-->
+<!--                    Ваш кредит - --><?php //echo Yii::$app->user->identity->credit; ?><!-- у.е.-->
+<!--                </p>-->
             </div>
         </div>
         <div class="col-md-6">
