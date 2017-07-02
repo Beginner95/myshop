@@ -7,9 +7,16 @@ use app\modules\client\models\OrderItemsClient;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
+use Yii;
 
 class OrderClientController extends AppClientController
 {
+    public static function getDate($date)
+    {
+        $d = \DateTime::createFromFormat('Y-m-d H:i:s', $date);
+        return $d->format('d-m-Y');
+    }
+
     public function behaviors()
     {
         return [
@@ -25,7 +32,7 @@ class OrderClientController extends AppClientController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderClient::find(),
+            'query' => OrderClient::find()->where(['client_id' => Yii::$app->user->identity->getId()]),
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -35,25 +42,16 @@ class OrderClientController extends AppClientController
                 ],
             ],
         ]);
-
-
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    public static function getDate($date)
-    {
-        $d = \DateTime::createFromFormat('Y-m-d H:i:s', $date);
-        return $d->format('d-m-Y');
-    }
-
-
     public function actionView($id)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => OrderClient::find(),
+            'query' => OrderClient::find()->where(['client_id' => Yii::$app->user->identity->getId()]),
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -63,7 +61,7 @@ class OrderClientController extends AppClientController
                 ],
             ],
         ]);
-        $items = OrderItemsClient::find()->where(['order_client_id' => $id])->all();
+        $items = OrderItemsClient::find()->where(['order_client_id' => $id])->andWhere(['client_id' => Yii::$app->user->identity->getId()])->all();
         return $this->render('view', [
             'items' => $items,
             'dataProvider' => $dataProvider,
