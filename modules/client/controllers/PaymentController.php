@@ -11,7 +11,7 @@ class PaymentController extends AppClientController
     public function actionHistory()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Transaction::find()->orderBy('status ASC')->where(['user_id' => Yii::$app->user->identity->id]),
+            'query' => Transaction::find()->orderBy('status ASC')->where(['user_id' => Yii::$app->user->identity->getId()]),
         ]);
 
         return $this->render('history', [
@@ -23,7 +23,7 @@ class PaymentController extends AppClientController
     {
         $model = new Transaction();
         if ($model->load(Yii::$app->request->post())) {
-            $model->user_id = Yii::$app->user->identity->id;
+            $model->user_id = Yii::$app->user->identity->getId();
             $model->save();
             return $this->redirect(['payment/history']);
         } else {
