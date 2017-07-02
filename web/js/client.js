@@ -60,7 +60,8 @@ $('.add-to-cart').on('click', function (e) {
         type: 'GET',
         success: function (res) {
             if (!res) alert('Error!');
-            showCart(res);
+            //showCart(res);
+            window.location.reload();
         },
         error: function () {
             alert('Error!');
