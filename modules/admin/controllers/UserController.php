@@ -2,6 +2,12 @@
 
 namespace app\modules\admin\controllers;
 
+use app\modules\admin\models\OrderClient;
+use app\modules\admin\models\OrderReturn;
+use app\modules\admin\models\Transaction;
+use app\modules\client\models\OrderItemsClient;
+use app\modules\client\models\OrderItemsReturn;
+use app\modules\client\models\Payment;
 use Yii;
 use app\modules\admin\models\User;
 use yii\data\ActiveDataProvider;
@@ -140,8 +146,13 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
+        Transaction::deleteAll(['user_id' => $id]);
+        Payment::deleteAll(['client_id' => $id]);
+        OrderItemsClient::deleteAll(['client_id' => $id]);
+        OrderItemsReturn::deleteAll(['user_id' => $id]);
+        OrderClient::deleteAll(['client_id' => $id]);
+        OrderReturn::deleteAll(['user_id' => $id]);
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 }
