@@ -131,7 +131,7 @@ class OrderClientController extends AppController
         $sum = 0;
         foreach ($items as $item) {
             $order_items = OrderItemsClient::findOne($item->id);
-            $order_items->availability = Yii::$app->request->post()['OrderItemsClient']['availability'][$item->id];
+            $order_items->availability = Yii::$app->request->post()['availability'][$item->id];
             if ($order_items->availability != 0) {
                 $sum += Yii::$app->request->post()['OrderItemsClient']['sum_item'][$item->id];
             }
