@@ -52,6 +52,7 @@ ltAppAsset::register($this);
                                         <li><a href="<?php echo \yii\helpers\Url::to(['slider/index']); ?>">Слайдер</a></li>
                                         <li><a href="<?php echo \yii\helpers\Url::to(['category/create']); ?>">Условия работы</a></li>
                                         <li><a href="<?php echo \yii\helpers\Url::to(['category/create']); ?>">Контакты</a></li>
+                                        <li><a href="<?php echo \yii\helpers\Url::to(['site-settings/index']); ?>">Общие настройки</a></li>
                                     </ul>
                                 </li>
 
