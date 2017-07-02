@@ -71,10 +71,12 @@ ltAppAsset::register($this);
 
                     <div class="block-phone">
                         <p>Справочная служба</p>
-                        <p class="phone-number">+7 (929) 888 02 05</p>
+                        <p class="phone-number"><?php echo \app\components\SettingsWidget::widget(['position' => 'phone']); ?></p>
                     </div>
                     <div class="logo">
-                        <a class="navbar-brand" href="<?php echo \yii\helpers\Url::home(); ?>">Logotip</a>
+                        <a class="navbar-brand" href="<?php echo \yii\helpers\Url::home(); ?>">
+                            <img src="<?php echo \app\components\SettingsWidget::widget(['position' => 'logotip']); ?>" alt="logo">
+                        </a>
                     </div>
                     <div class="clear"></div>
                 </nav>
@@ -151,8 +153,8 @@ ltAppAsset::register($this);
         <div class="row">
             <div class="container-fluid">
                 <div class="col-md-4">
-                    <h2>ООО "Ромашка"</h2>
-                    <p>Купив один раз у нас товар, вы обязательно придете к нам за покупками еще</p>
+                    <h2><?php echo \app\components\SettingsWidget::widget(['position' => 'name_company']); ?></h2>
+                    <p><?php echo \app\components\SettingsWidget::widget(['position' => 'slogan']); ?></p>
                 </div>
                 <div class="col-md-4">
                     <h2>Навигация</h2>
@@ -173,9 +175,9 @@ ltAppAsset::register($this);
                 <div class="col-md-4">
                     <h2>Контакты</h2>
                     <ul class="contacts">
-                        <li>Тел: +1 (999) 999 99 99</li>
-                        <li>Email: admin@admin.ru</li>
-                        <li>Адрес: Ромашкина 10</li>
+                        <li>Тел: <?php echo \app\components\SettingsWidget::widget(['position' => 'phone']); ?></li>
+                        <li>Email: <?php echo \app\components\SettingsWidget::widget(['position' => 'email']); ?></li>
+                        <li>Адрес: <?php echo \app\components\SettingsWidget::widget(['position' => 'address']); ?></li>
                         <br>
                         <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir"></div>
                     </ul>
