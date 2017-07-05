@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Deliveries';
+$this->title = 'Способы доставок';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="delivery-index">
@@ -14,19 +14,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Delivery', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить способ доставки', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            
             'name',
             'cost',
             'description',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete}',
+            ],
+
         ],
     ]); ?>
 </div>
