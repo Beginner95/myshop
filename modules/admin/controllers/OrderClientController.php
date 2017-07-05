@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\controllers\AppController;
 use app\modules\client\models\Payment;
+use app\modules\admin\models\Delivery;
 use app\modules\client\models\OrderItemsClient;
 use Yii;
 use app\modules\admin\models\OrderClient;
@@ -110,20 +111,40 @@ class OrderClientController extends AppController
     {
         $items = OrderItemsClient::find()->where(['order_client_id' => $id])->all();
         $model = $this->findModel($id);
+        $status = $model->status;
+        var_dump(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post())) {
-            $model->sum = $this->updateOrderItemsClient($items);
-            if (true === $model->save()) {
-                if (1 == $model->status) {
-                    $this->setBalance($model->sum, $id);
-                }
+            if ('0' != $model->status && '1' != $model->status) {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
             }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'items' => $items,
-            ]);
+
+            if ($status != Yii::$app->request->post()['OrderClient']['status']) {
+                if (true === $model->save()) {
+                    $cost = Delivery::find()
+                        ->select(['cost'])
+                        ->where(['id' => $model->delivery_id])
+                        ->one();
+                    if (0 != $this->updateOrderItemsClient($items)) {
+                        $model->sum = $this->updateOrderItemsClient($items) + $cost->cost;
+                    } else {
+                        $model->sum = 0;
+                    }
+
+                    if (1 == $model->status) {
+                        $this->setBalance($model->sum, $id);
+                    } else {
+                        $this->setBalance($model->sum, $id);
+                    }
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+        return $this->render('update', [
+            'model' => $model,
+            'items' => $items,
+        ]);
     }
 
     protected function updateOrderItemsClient($items)
@@ -142,12 +163,18 @@ class OrderClientController extends AppController
 
     protected function setBalance($sum, $order_id)
     {
-        $payment = new Payment();
-        $payment->client_id = Yii::$app->request->post()['OrderClient']['client_id'];
-        $payment->order_client_id = $order_id;
-        $payment->amount = $this->getBalance()['amount'] - $sum;
-        $payment->description = 'Оплата заказа ' . $order_id;
-        $payment->save();
+        $payment_update = Payment::findOne(['order_client_id' => $order_id]);
+        if (null === $payment_update) {
+            $payment = new Payment();
+            $payment->client_id = Yii::$app->request->post()['OrderClient']['client_id'];
+            $payment->order_client_id = $order_id;
+            $payment->amount = $this->getBalance()['amount'] - $sum;
+            $payment->description = 'Оплата заказа ' . $order_id;
+            $payment->save();
+        } else {
+            $payment_update->amount =  $sum;
+            $payment_update->save();
+        }
     }
 
     protected function getBalance()
