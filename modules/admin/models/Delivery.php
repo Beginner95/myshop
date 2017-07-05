@@ -39,6 +39,7 @@ class Delivery extends ActiveRecord
         return [
             'name' => 'Наименование',
             'cost' => 'Цена',
+            'description' => 'Описание',
         ];
     }
 }
