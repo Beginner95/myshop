@@ -69,9 +69,14 @@ class CartController extends AppClientController
         $session = Yii::$app->session;
         $session->open();
         $this->setMeta('Корзина');
-
         $order = new OrderClient();
+
         if ($order->load(Yii::$app->request->post())) {
+
+            $cost = Delivery::find()
+                ->select(['cost'])
+                ->where(['id' => (int)Yii::$app->request->post()['OrderClient']['delivery_id']])
+                ->one();
 
             $items = OrderClient::find()
                 ->select('id, date_added')
@@ -83,7 +88,7 @@ class CartController extends AppClientController
             }
 
             $order->qty = $session['cart.qty'];
-            $order->sum = $session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100);
+            $order->sum = $session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100) + $cost->cost;
             $order->client_id = Yii::$app->user->identity->id;
 
             if ($order->save()) {
@@ -126,7 +131,6 @@ class CartController extends AppClientController
         $order->status = '0';
         $order->qty += $session['cart.qty'];
         $order->sum += $session['cart.sum'] * ((100 - Yii::$app->user->identity->discount) / 100);
-        $order->client_id = Yii::$app->user->identity->id;
 
         if ($order->save()) {
             $this->saveOrderItemsClient($session['cart'], $order->id);
@@ -141,22 +145,9 @@ class CartController extends AppClientController
             $session->remove('cart');
             $session->remove('cart.qty');
             $session->remove('cart.sum');
-            return $this->refresh();
-        } else {
-            Yii::$app->session->setFlash('error', 'Ошибка оформления заказа.');
+
         }
-
-        $delivery = Delivery::find()->all();
-        $fio = [
-            'firstName' => Yii::$app->user->identity->firstName,
-            'secondName' => Yii::$app->user->identity->secondName,
-            'lastName' => Yii::$app->user->identity->lastName,
-            'email' => Yii::$app->user->identity->email,
-            'phone' => Yii::$app->user->identity->phone,
-            'address' => Yii::$app->user->identity->address,
-        ];
-        return $this->render('view', compact('session', 'order', 'fio', 'delivery'));
-
+        return $this->refresh();
     }
 
     protected function saveOrderItemsClient($items, $order_id)
