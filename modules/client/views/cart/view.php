@@ -62,7 +62,7 @@
             <?php echo $form->field($order, 'phone')->textInput(['value'=> $fio['phone']]); ?>
             <?php echo $form->field($order, 'address')->textInput(['value'=> $fio['address']]); ?>
             <?php
-                $items = \yii\helpers\ArrayHelper::map($delivery, 'id', 'name');
+                $items = \app\modules\client\controllers\MyHelper::cmap($delivery, 'id', ['name', 'cost'], ' Стоимость ');
                 echo $form->field($order, 'delivery_id')->dropDownList($items);
             ?>
 
