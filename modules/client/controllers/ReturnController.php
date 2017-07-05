@@ -12,7 +12,10 @@ class ReturnController extends AppClientController
 {
     public function actionIndex()
     {
-        $items = OrderItemsClient::find()->where(['client_id' => Yii::$app->user->identity->getId()])->all();
+        $items = OrderItemsClient::find()
+            ->where(['client_id' => Yii::$app->user->identity->getId()])
+            ->andWhere(['availability' => '1'])
+            ->all();
         return $this->render('index', [
             'items' => $items,
         ]);
