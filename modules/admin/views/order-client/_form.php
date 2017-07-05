@@ -12,25 +12,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date_added')->textInput() ?>
-
-    <?= $form->field($model, 'date_update')->textInput() ?>
-
-    <?= $form->field($model, 'qty')->textInput() ?>
-
-    <?= $form->field($model, 'sum')->textInput() ?>
-
+    <p>Дата заказа: <?php echo $model->date_added; ?></p>
+    <p>Дата последнего изменения: <?php echo $model->date_update; ?></p>
+    <p>Имя клиента: <?php echo $model->secondName; ?></p>
+    <p>Телефон: <?php echo $model->phone; ?></p>
+    <p>Дополнение к заказу: <?php echo $model->comment; ?></p>
     <?= $form->field($model, 'status')->dropDownList([ '0' => 'Активен', '1' => 'Завершен', ]) ?>
-
-    <?= $form->field($model, 'secondName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'client_id')->hiddenInput()->label('') ?>
     <h3>Товары в заказе</h3>
@@ -72,6 +59,14 @@ use yii\widgets\ActiveForm;
             </td>
         </tr>
     <?php endforeach; ?>
+        <tr>
+            <td colspan="2">Итого (цена с доставкой)</td>
+
+            <td><?php echo $model->qty; ?></td>
+            <td></td>
+            <td><?php echo number_format($model->sum, 2, ',', ' '); ?></td>
+            <td></td>
+        </tr>
     </table>
 
     <div class="form-group">
