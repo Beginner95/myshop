@@ -1,7 +1,6 @@
 <?php
 
 namespace app\modules\admin\models;
-use app\modules\client\models\OrderClient;
 use app\modules\client\models\Payment;
 
 use Yii;
