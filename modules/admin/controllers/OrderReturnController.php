@@ -101,10 +101,20 @@ class OrderReturnController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $status = $model->status;
         if ($model->load(Yii::$app->request->post())) {
-            if (true === $model->save()) {
-                if (1 == $model->status) {
-                    $this->setBalance($model->sum, $id);
+            if ('0' != $model->status && '1' != $model->status) {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+            if ($status != Yii::$app->request->post()['OrderReturn']['status']) {
+                if (true === $model->save()) {
+                    if (1 == $model->status) {
+                        $this->setBalance($model->sum, $id, '+');
+                    } else {
+                        $this->setBalance($model->sum, $id, '-');
+                    }
                 }
             }
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,14 +125,29 @@ class OrderReturnController extends Controller
         }
     }
 
-    protected function setBalance($sum, $order_id)
+    protected function setBalance($sum, $order_id, $op)
     {
-        $payment = new Payment();
-        $payment->client_id = Yii::$app->request->post()['OrderReturn']['user_id'];
-        $payment->order_client_id = $order_id;
-        $payment->amount = $this->getBalance()['amount'] + $sum;
-        $payment->description = 'Оплата заказа ' . $order_id;
-        $payment->save();
+        $payment_update = Payment::findOne(['order_client_id' => $order_id]);
+        if (null === $payment_update) {
+            $payment = new Payment();
+            $payment->client_id = Yii::$app->request->post()['OrderReturn']['user_id'];
+            $payment->order_client_id = $order_id;
+            if ('+' == $op){
+                $payment->amount = $this->getBalance()['amount'] + $sum;
+            } else {
+                $payment->amount = $this->getBalance()['amount'] - $sum;
+            }
+            $payment->description = 'Оплата заказа ' . $order_id;
+            $payment->save();
+        } else {
+            if ('+' == $op){
+                $payment_update->amount = $this->getBalance()['amount'] + $sum;
+            } else {
+                $payment_update->amount = $this->getBalance()['amount'] - $sum;
+            }
+            $payment_update->save();
+        }
+
     }
 
     protected function getBalance()
