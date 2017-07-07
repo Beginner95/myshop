@@ -146,13 +146,19 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        Transaction::deleteAll(['user_id' => $id]);
-        Payment::deleteAll(['client_id' => $id]);
-        OrderItemsClient::deleteAll(['client_id' => $id]);
-        OrderItemsReturn::deleteAll(['user_id' => $id]);
-        OrderClient::deleteAll(['client_id' => $id]);
-        OrderReturn::deleteAll(['user_id' => $id]);
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        if (1 == $id ) {
+            Yii::$app->session->setFlash('error', 'Не возможно удалить администратора системы');
+            return $this->redirect(['index']);
+        } else {
+            Transaction::deleteAll(['user_id' => $id]);
+            Payment::deleteAll(['client_id' => $id]);
+            OrderItemsClient::deleteAll(['client_id' => $id]);
+            OrderItemsReturn::deleteAll(['user_id' => $id]);
+            OrderClient::deleteAll(['client_id' => $id]);
+            OrderReturn::deleteAll(['user_id' => $id]);
+            $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', 'Клиент удален, а так-же удалены все его возвраты, заказы и платежи');
+            return $this->redirect(['index']);
+        }
     }
 }
