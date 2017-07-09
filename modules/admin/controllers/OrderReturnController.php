@@ -133,31 +133,21 @@ class OrderReturnController extends Controller
             $payment->client_id = Yii::$app->request->post()['OrderReturn']['user_id'];
             $payment->order_client_id = $order_id;
             if ('+' == $op){
-                $payment->amount = $this->getBalance()['amount'] + $sum;
+                $payment->amount = $sum;
             } else {
-                $payment->amount = $this->getBalance()['amount'] - $sum;
+                $payment->amount = '-' . $sum;
             }
             $payment->description = 'Оплата заказа ' . $order_id;
             $payment->save();
         } else {
             if ('+' == $op){
-                $payment_update->amount = $this->getBalance()['amount'] + $sum;
+                $payment_update->amount = $sum;
             } else {
-                $payment_update->amount = $this->getBalance()['amount'] - $sum;
+                $payment_update->amount = '-' . $sum;
             }
             $payment_update->save();
         }
 
-    }
-
-    protected function getBalance()
-    {
-        return Payment::find()
-            ->select(['amount'])
-            ->where(['client_id' => Yii::$app->request->post()['OrderReturn']['user_id']])
-            ->asArray()
-            ->orderBy('id DESC')
-            ->one();
     }
 
     /**
