@@ -158,23 +158,13 @@ class OrderClientController extends AppController
             $payment = new Payment();
             $payment->client_id = Yii::$app->request->post()['OrderClient']['client_id'];
             $payment->order_client_id = $order_id;
-            $payment->amount = $this->getBalance()['amount'] - $sum;
+            $payment->amount = '-' . $sum;
             $payment->description = 'Оплата заказа ' . $order_id;
             $payment->save();
         } else {
-            $payment_update->amount =  '-'.$sum;
+            $payment_update->amount =  '-' . $sum;
             $payment_update->save();
         }
-    }
-
-    protected function getBalance()
-    {
-        return Payment::find()
-            ->select(['amount'])
-            ->where(['client_id' => Yii::$app->request->post()['OrderClient']['client_id']])
-            ->asArray()
-            ->orderBy('id DESC')
-            ->one();
     }
 
     /**
