@@ -12,7 +12,7 @@ class DefaultController extends AppClientController
     {
         $session =Yii::$app->session;
         $session->open();
-        $balance = $this->actionBalance();
+        $balance = $this->getBalance();
         return $this->render('index', compact('balance', 'session'));
     }
 
@@ -25,15 +25,15 @@ class DefaultController extends AppClientController
         $query = Product::find()->where(['like', 'name', $q]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 10, 'forcePageParam' => false, 'pageSizeParam' => false]);
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
-        $balance = $this->actionBalance();
+        $balance = $this->getBalance();
         $session =Yii::$app->session;
         $session->open();
         return $this->render('index', compact('products', 'pages', 'q', 'balance', 'session'));
     }
 
-    public function actionBalance()
+    public function getBalance()
     {
-        return $balance = Payment::find()->where(['client_id' => Yii::$app->user->identity->id])->orderBy('id DESC')->all();
+        return $balance = Payment::find()->where(['client_id' => Yii::$app->user->identity->getId()])->sum('amount');
     }
 
 
