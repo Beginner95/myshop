@@ -132,18 +132,8 @@ class TransactionController extends Controller
     {
         $payment = new Payment();
         $payment->client_id = $user_id;
-        $payment->amount = $this->getBalance($user_id)['amount'] + $sum;
+        $payment->amount = $sum;
         $payment->description = 'Внесение средств по платежке №' . $payment_id;
         $payment->save();
-    }
-
-    protected function getBalance($user_id)
-    {
-        return Payment::find()
-            ->select(['amount'])
-            ->where(['client_id' => $user_id])
-            ->asArray()
-            ->orderBy('id DESC')
-            ->one();
     }
 }
