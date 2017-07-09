@@ -29,7 +29,7 @@ class NotificationWidget extends Widget
     public function run()
     {
         if ($this->notice == 'notice_order') {
-            $this->data = OrderClient::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
+            $this->data = Order::find()->where(['status' => '0'])->orWhere(['status' => null])->asArray()->all();
             $this->data = count($this->data);
             echo $this->render('notice_order', ['notice' => $this->data]);
         }
