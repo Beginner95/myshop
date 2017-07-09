@@ -8,11 +8,7 @@
             <div class="row-two-left">
                 <p>Ваш баланс:
                     <?php
-                        if (!empty($balance[0]->amount)) {
-                            echo number_format($balance[0]->amount, 2, ',', ' ');
-                        } else {
-                            echo '00,00';
-                        }
+                        echo number_format($balance, 2, ',', ' ');
                     ?>
                 </p>
             </div>
